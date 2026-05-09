@@ -1,0 +1,3035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket - Enhanced Header Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-main: #6B46C1;
+            --primary-light: #8B6FD9;
+            --primary-dark: #4F3291;
+            --primary-gradient: linear-gradient(135deg, #6B46C1, #8B6FD9);
+            --secondary-gradient: linear-gradient(135deg, #8B6FD9, #A78BFF);
+            --gray-900: #18181B;
+            --gray-800: #27272A;
+            --gray-700: #3F3F46;
+            --gray-600: #52525B;
+            --gray-500: #71717A;
+            --gray-400: #A1A1AA;
+            --gray-300: #D4D4D8;
+            --gray-200: #E4E4E7;
+            --gray-100: #F4F4F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            
+            /* Typography */
+            --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Borders & Shadows */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--gray-900);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--gray-50);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: var(--border-radius-full);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            gap: var(--space-sm);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2px; /* Added margin to prevent button from being cut off */
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(107, 70, 193, 0.4);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transition: all 0.6s ease;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding-top: 4px; /* Added padding to move content down slightly */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 var(--space-xl);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30%;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: var(--border-radius-full);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: var(--space-2xl);
+            height: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--space-xs);
+        }
+
+        nav a:hover {
+            color: var(--primary-main);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            opacity: 0;
+            border-radius: var(--border-radius-full);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gray-800);
+            border-radius: var(--border-radius-full);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover span {
+            background: var(--primary-main);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1100;
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius-full);
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-close:hover {
+            background: var(--gray-200);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .mobile-nav a {
+            color: var(--gray-900);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary-main);
+            padding-left: var(--space-sm);
+        }
+
+        .mobile-nav a i {
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover i {
+            transform: translateX(4px);
+        }
+
+        .mobile-user-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Fancy placeholder content to show scroll effect */
+        .content-placeholder {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .user-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu -->
+    <div class="overlay"></div>
+    <div class="mobile-menu">
+        <div class="menu-header">
+            <div class="logo">AutoMarket</div>
+            <div class="menu-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="mobile-nav">
+            <a href="#browse">Browse Vehicles <i class="fas fa-chevron-right"></i></a>
+            <a href="#sell">Browse Parts <i class="fas fa-chevron-right"></i></a>
+            <a href="#finance">Delivery <i class="fas fa-chevron-right"></i></a>
+            <a href="#about">About Us <i class="fas fa-chevron-right"></i></a>
+            <a href="#contact">Contact <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="mobile-user-actions">
+            <a href="#" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> Get Started
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">AutoMarket</div>
+                <nav>
+                    <a href="#browse">Browse</a>
+                    <a href="#cars">Cars</a>
+                    <a href="#finance">Parts</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="user-actions">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content placeholder to demonstrate scroll effect -->
+    <div class="content-placeholder" style="display: none;">
+        <!-- Hidden content -->
+    </div>
+
+    <!-- Script to show how this section works independently -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuClose = document.querySelector('.menu-close');
+            const overlay = document.querySelector('.overlay');
+            
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            menuClose.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            overlay.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Enhanced Sticky Header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                const logo = document.querySelector('.logo');
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    header.style.height = '65px';
+                    header.style.boxShadow = '0 4px 20px rgba(107, 70, 193, 0.15)';
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    logo.style.fontSize = '24px';
+                } else {
+                    header.style.height = '80px';
+                    header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                    header.style.background = 'rgba(255, 255, 255, 0.85)';
+                    logo.style.fontSize = '28px';
+                }
+            });
+        });
+    </script>
+
+
+
+
+<!-- Categories Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket - Car Listings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-main: #6B46C1;
+            --primary-light: #8B6FD9;
+            --primary-dark: #4F3291;
+            --primary-gradient: linear-gradient(135deg, #6B46C1, #8B6FD9);
+            --gray-900: #18181B;
+            --gray-800: #27272A;
+            --gray-700: #3F3F46;
+            --gray-600: #52525B;
+            --gray-500: #71717A;
+            --gray-400: #A1A1AA;
+            --gray-300: #D4D4D8;
+            --gray-200: #E4E4E7;
+            --gray-100: #F4F4F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            
+            /* Typography */
+            --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Borders & Shadows */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--gray-900);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--gray-50);
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: var(--space-3xl) 0 var(--space-lg);
+            background: var(--white);
+            position: relative;
+            margin-top: 100px;
+        }
+
+        .categories-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gray-300), transparent);
+        }
+
+        .categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .categories-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .categories-nav {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .nav-arrow {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius-full);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-800);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background: var(--primary-main);
+            color: var(--white);
+            border-color: var(--primary-main);
+        }
+
+        .category-pills {
+            display: flex;
+            gap: var(--space-md);
+            overflow-x: auto;
+            padding: var(--space-sm) 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            padding-bottom: var(--space-md);
+        }
+
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-pill {
+            white-space: nowrap;
+            padding: 14px 28px;
+            border-radius: var(--border-radius-full);
+            background: var(--white);
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        .category-pill i {
+            font-size: 14px;
+        }
+
+        .category-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            color: var(--primary-main);
+        }
+
+        .category-pill.active {
+            background: var(--primary-gradient);
+            color: var(--white);
+            border-color: var(--primary-main);
+            box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        }
+
+        /* Car Listings Section */
+        .listings-section {
+            padding: var(--space-2xl) 0;
+            background: var(--gray-50);
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .car-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--gray-200);
+        }
+
+        .car-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 240px;
+            background: var(--gray-100);
+            overflow: hidden;
+            border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.05);
+        }
+
+        .car-content {
+            padding: var(--space-lg);
+        }
+
+        .car-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-sm);
+        }
+
+        .car-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-main);
+            margin-bottom: var(--space-md);
+        }
+
+        .car-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .car-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .car-detail i {
+            color: var(--primary-main);
+            width: 16px;
+        }
+
+        .car-badges {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: var(--border-radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.certified {
+            background: #DCFCE7;
+            color: var(--success);
+        }
+
+        .badge.low-mileage {
+            background: #FEF3C7;
+            color: var(--warning);
+        }
+
+        .badge.electric {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .close {
+            color: var(--gray-500);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--gray-800);
+        }
+
+        .modal-body {
+            padding: var(--space-xl);
+        }
+
+        .modal-car-image {
+            width: 100%;
+            height: 300px;
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--space-lg);
+            background: var(--gray-100);
+            overflow: hidden;
+        }
+
+        .modal-car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-car-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .info-group h4 {
+            color: var(--gray-900);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .info-group p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-xs);
+        }
+
+        .modal-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-main);
+            margin-bottom: var(--space-lg);
+        }
+
+        .description {
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: var(--white);
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20B358;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn i {
+            font-size: 18px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-pills {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+            
+            .modal-car-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-header {
+                flex-direction: column;
+                gap: var(--space-md);
+                align-items: flex-start;
+            }
+            
+            .car-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Car Inquiry Popup */
+        .car-inquiry-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--gray-200);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .car-inquiry-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .popup-header {
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: var(--space-md);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .popup-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .popup-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 18px;
+            cursor: pointer;
+            padding: var(--space-xs);
+            border-radius: var(--border-radius-sm);
+            transition: background 0.2s ease;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .popup-content {
+            padding: var(--space-lg);
+        }
+
+        .popup-message {
+            color: var(--gray-700);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: var(--space-md);
+        }
+
+        .popup-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .popup-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: var(--space-md);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-primary);
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        .popup-textarea:focus {
+            outline: none;
+            border-color: var(--primary-main);
+            box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+        }
+
+        .popup-textarea::placeholder {
+            color: var(--gray-500);
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: var(--space-md);
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-primary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+
+        .popup-btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .popup-btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-1px);
+        }
+
+        .popup-btn-email {
+            background: var(--primary-main);
+            color: var(--white);
+        }
+
+        .popup-btn-email:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .popup-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Responsive popup */
+        @media (max-width: 768px) {
+            .car-inquiry-popup {
+                width: 300px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .car-inquiry-popup {
+                width: 280px;
+                right: 10px;
+                bottom: 10px;
+            }
+            
+            .popup-content {
+                padding: var(--space-md);
+            }
+            
+            .popup-buttons {
+                flex-direction: column;
+            }
+            
+            .popup-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-header">
+                <h2>Browse Categories</h2>
+                <div class="categories-nav">
+                    <div class="nav-arrow prev-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="category-pills">
+                <a href="#" class="category-pill active" data-category="all">
+                    <i class="fas fa-car"></i> All Vehicles
+                </a>
+                <a href="#" class="category-pill" data-category="electric">
+                    <i class="fas fa-bolt"></i> Electric
+                </a>
+                <a href="#" class="category-pill" data-category="luxury">
+                    <i class="fas fa-crown"></i> Luxury
+                </a>
+                <a href="#" class="category-pill" data-category="sports">
+                    <i class="fas fa-flag-checkered"></i> Sports Cars
+                </a>
+                <a href="#" class="category-pill" data-category="suv">
+                    <i class="fas fa-truck-monster"></i> SUVs
+                </a>
+                <a href="#" class="category-pill" data-category="truck">
+                    <i class="fas fa-truck-pickup"></i> Trucks
+                </a>
+                <a href="#" class="category-pill" data-category="hybrid">
+                    <i class="fas fa-leaf"></i> Hybrids
+                </a>
+                <a href="#" class="category-pill" data-category="certified">
+                    <i class="fas fa-certificate"></i> Certified Pre-Owned
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Listings Section -->
+    <section class="listings-section">
+        <div class="container">
+            <div class="listings-grid" id="listingsGrid">
+                <!-- Car cards will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Car Details</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-car-image" id="modalCarImage">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="modal-price" id="modalPrice">£0</div>
+                <div class="modal-car-info">
+                    <div class="info-group">
+                        <h4>Vehicle Details</h4>
+                        <p id="modalYear">Year: -</p>
+                        <p id="modalMileage">Mileage: -</p>
+                        <p id="modalEngine">Engine: -</p>
+                        <p id="modalTransmission">Transmission: -</p>
+                    </div>
+                    <div class="info-group">
+                        <h4>Features</h4>
+                        <p id="modalFuelType">Fuel Type: -</p>
+                        <p id="modalDriveType">Drive Type: -</p>
+                        <p id="modalColor">Color: -</p>
+                        <p id="modalCondition">Condition: -</p>
+                    </div>
+                </div>
+                <div class="description" id="modalDescription">
+                    <!-- Description will be inserted here -->
+                </div>
+                <button class="whatsapp-btn" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    Contact Us on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Car data - Replace image paths with your actual images in the img folder
+        const carData = [
+            {
+                id: 1,
+                title: "2023 Tesla Model S",
+                price: 72000,
+                year: 2023,
+                mileage: "5,000 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Pearl White",
+                condition: "Excellent",
+                image: "img/back1.jpg", // Replace with actual image path
+                category: "electric",
+                badges: ["electric", "low-mileage"],
+                description: "Experience the future of driving with this stunning 2023 Tesla Model S. This all-electric luxury sedan combines cutting-edge technology with exceptional performance. Features include Autopilot, premium interior, and over 400 miles of range on a single charge."
+            },
+            {
+                id: 2,
+                title: "2022 BMW X5 M Competition",
+                price: 100000,
+                year: 2022,
+                mileage: "8,500 miles",
+                engine: "4.4L Twin-Turbo V8",
+                transmission: "Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Alpine White",
+                condition: "Excellent",
+                image: "img/bmw-x5-m.jpg",
+                category: "luxury",
+                badges: ["certified", "low-mileage"],
+                description: "Unleash the power of this 2022 BMW X5 M Competition. With 617 horsepower and luxury appointments throughout, this high-performance SUV delivers an exhilarating driving experience. Premium features include adaptive suspension, premium sound system, and executive rear seating."
+            },
+            {
+                id: 3,
+                title: "2021 Porsche 911 Carrera",
+                price: 94500,
+                year: 2021,
+                mileage: "12,000 miles",
+                engine: "3.0L Twin-Turbo H6",
+                transmission: "PDK Automatic",
+                fuelType: "Gasoline",
+                driveType: "RWD",
+                color: "Guards Red",
+                condition: "Excellent",
+                image: "img/porsche-911.jpg",
+                category: "sports",
+                badges: ["certified"],
+                description: "Experience pure driving pleasure with this iconic 2021 Porsche 911 Carrera. This legendary sports car combines timeless design with modern performance technology. Features include Sport Chrono package, premium leather interior, and the unmistakable flat-six engine sound."
+            },
+            {
+                id: 4,
+                title: "2023 Ford F-150 Lightning",
+                price: 53500,
+                year: 2023,
+                mileage: "3,200 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "4WD",
+                color: "Antimatter Blue",
+                condition: "Like New",
+                image: "img/ford-f150-lightning.jpg",
+                category: "truck",
+                badges: ["electric", "low-mileage"],
+                description: "Revolutionize your work and play with the 2023 Ford F-150 Lightning. This all-electric truck delivers impressive towing capacity and innovative features like Pro Power Onboard. Perfect for both work sites and weekend adventures with zero emissions."
+            },
+            {
+                id: 5,
+                title: "2022 Toyota Prius Prime",
+                price: 25600,
+                year: 2022,
+                mileage: "15,000 miles",
+                engine: "1.8L Hybrid",
+                transmission: "CVT",
+                fuelType: "Hybrid",
+                driveType: "FWD",
+                color: "Blizzard Pearl",
+                condition: "Excellent",
+                image: "img/toyota-prius.jpg",
+                category: "hybrid",
+                badges: ["certified"],
+                description: "Maximize your fuel efficiency with this 2022 Toyota Prius Prime. This plug-in hybrid offers exceptional fuel economy and eco-friendly driving. Features include Toyota Safety Sense 2.0, premium audio system, and the ability to drive on electric power alone for daily commutes."
+            },
+            {
+                id: 6,
+                title: "2021 Range Rover Velar",
+                price: 62400,
+                year: 2021,
+                mileage: "18,000 miles",
+                engine: "2.0L Turbo I4",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Santorini Black",
+                condition: "Excellent",
+                image: "img/range-rover-velar.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Elevate your driving experience with this 2021 Range Rover Velar. This luxury SUV combines sophisticated design with exceptional capability. Features include premium Meridian sound system, panoramic roof, and advanced terrain response system for any adventure."
+            },
+            {
+                id: 7,
+                title: "2023 Audi e-tron GT",
+                price: 104000,
+                year: 2023,
+                mileage: "2,800 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Daytona Grey",
+                condition: "Like New",
+                image: "img/audi-etron-gt.jpg",
+                category: "electric",
+                badges: ["electric", "low-mileage"],
+                description: "Experience luxury electric performance with the 2023 Audi e-tron GT. This stunning electric sedan combines Audi's signature design with cutting-edge electric technology and impressive range."
+            },
+            {
+                id: 8,
+                title: "2022 Mercedes-AMG G63",
+                price: 175000,
+                year: 2022,
+                mileage: "6,200 miles",
+                engine: "4.0L Twin-Turbo V8",
+                transmission: "9-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Obsidian Black",
+                condition: "Excellent",
+                image: "img/mercedes-g63.jpg",
+                category: "luxury",
+                badges: ["certified", "low-mileage"],
+                description: "Command attention with this 2022 Mercedes-AMG G63. This luxury SUV combines iconic G-Class design with AMG performance, delivering 577 horsepower and unmatched presence."
+            },
+            {
+                id: 9,
+                title: "2021 McLaren 720S",
+                price: 285000,
+                year: 2021,
+                mileage: "4,100 miles",
+                engine: "4.0L Twin-Turbo V8",
+                transmission: "7-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "RWD",
+                color: "Volcano Orange",
+                condition: "Excellent",
+                image: "img/mclaren-720s.jpg",
+                category: "sports",
+                badges: ["certified", "low-mileage"],
+                description: "Experience supercar excellence with this 2021 McLaren 720S. This mid-engine masterpiece delivers breathtaking performance with 710 horsepower and McLaren's legendary handling."
+            },
+            {
+                id: 10,
+                title: "2023 Rivian R1T",
+                price: 74000,
+                year: 2023,
+                mileage: "1,500 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Launch Green",
+                condition: "Like New",
+                image: "img/rivian-r1t.jpg",
+                category: "truck",
+                badges: ["electric", "low-mileage"],
+                description: "Revolutionize your adventures with the 2023 Rivian R1T. This electric pickup truck combines impressive towing capacity with innovative features like the Tank Turn and Camp Mode."
+            },
+            {
+                id: 11,
+                title: "2022 Lexus LC 500h",
+                price: 97000,
+                year: 2022,
+                mileage: "9,800 miles",
+                engine: "3.5L V6 Hybrid",
+                transmission: "CVT",
+                fuelType: "Hybrid",
+                driveType: "RWD",
+                color: "Structural Blue",
+                condition: "Excellent",
+                image: "img/lexus-lc500h.jpg",
+                category: "hybrid",
+                badges: ["certified"],
+                description: "Experience luxury and efficiency with this 2022 Lexus LC 500h. This hybrid grand tourer combines stunning design with impressive fuel economy and refined performance."
+            },
+            {
+                id: 12,
+                title: "2021 Bentley Bentayga",
+                price: 185000,
+                year: 2021,
+                mileage: "11,000 miles",
+                engine: "4.0L Twin-Turbo V8",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Beluga Black",
+                condition: "Excellent",
+                image: "img/bentley-bentayga.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Indulge in ultimate luxury with this 2021 Bentley Bentayga. This luxury SUV offers handcrafted interior, exceptional comfort, and powerful performance in true Bentley style."
+            },
+            {
+                id: 13,
+                title: "2023 Chevrolet Corvette Z06",
+                price: 106000,
+                year: 2023,
+                mileage: "800 miles",
+                engine: "5.5L Naturally Aspirated V8",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "RWD",
+                color: "Torch Red",
+                condition: "Like New",
+                image: "img/corvette-z06.jpg",
+                category: "sports",
+                badges: ["low-mileage"],
+                description: "Experience American supercar performance with this 2023 Chevrolet Corvette Z06. This track-focused machine delivers 670 horsepower from its naturally aspirated LT6 engine."
+            },
+            {
+                id: 14,
+                title: "2022 Ram 1500 TRX",
+                price: 85000,
+                year: 2022,
+                mileage: "7,300 miles",
+                engine: "6.2L Supercharged V8",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "4WD",
+                color: "Granite Crystal",
+                condition: "Excellent",
+                image: "img/ram-trx.jpg",
+                category: "truck",
+                badges: ["certified"],
+                description: "Conquer any terrain with this 2022 Ram 1500 TRX. This high-performance pickup truck features a supercharged Hellcat engine and advanced off-road capabilities."
+            },
+            {
+                id: 15,
+                title: "2023 Toyota Highlander Hybrid",
+                price: 42000,
+                year: 2023,
+                mileage: "4,600 miles",
+                engine: "2.5L Hybrid",
+                transmission: "CVT",
+                fuelType: "Hybrid",
+                driveType: "AWD",
+                color: "Celestial Silver",
+                condition: "Excellent",
+                image: "img/toyota-highlander.jpg",
+                category: "hybrid",
+                badges: ["certified", "low-mileage"],
+                description: "Enjoy family adventures with this 2023 Toyota Highlander Hybrid. This three-row SUV combines excellent fuel economy with spacious seating and Toyota's renowned reliability."
+            },
+            {
+                id: 16,
+                title: "2022 Maserati Levante",
+                price: 78000,
+                year: 2022,
+                mileage: "12,500 miles",
+                engine: "3.0L Twin-Turbo V6",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Blu Emozione",
+                condition: "Excellent",
+                image: "img/maserati-levante.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Experience Italian luxury with this 2022 Maserati Levante. This luxury SUV combines distinctive design with impressive performance and the signature Maserati sound."
+            },
+            {
+                id: 17,
+                title: "2023 Lucid Air Dream",
+                price: 169000,
+                year: 2023,
+                mileage: "1,200 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Stellar White",
+                condition: "Like New",
+                image: "img/lucid-air.jpg",
+                category: "electric",
+                badges: ["electric", "low-mileage"],
+                description: "Step into the future with this 2023 Lucid Air Dream. This luxury electric sedan offers over 500 miles of range and cutting-edge technology in a stunning package."
+            },
+            {
+                id: 18,
+                title: "2021 Jaguar F-TYPE R",
+                price: 89000,
+                year: 2021,
+                mileage: "8,900 miles",
+                engine: "5.0L Supercharged V8",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "British Racing Green",
+                condition: "Excellent",
+                image: "img/jaguar-ftype.jpg",
+                category: "sports",
+                badges: ["certified"],
+                description: "Embrace British sports car heritage with this 2021 Jaguar F-TYPE R. This performance coupe delivers 575 horsepower and an intoxicating exhaust note."
+            },
+            {
+                id: 19,
+                title: "2022 Ford Bronco Raptor",
+                price: 68000,
+                year: 2022,
+                mileage: "5,800 miles",
+                engine: "3.0L Twin-Turbo V6",
+                transmission: "10-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "4WD",
+                color: "Code Orange",
+                condition: "Excellent",
+                image: "img/ford-bronco.jpg",
+                category: "suv",
+                badges: ["certified"],
+                description: "Conquer the wild with this 2022 Ford Bronco Raptor. This high-performance SUV combines legendary Bronco capability with Raptor performance technology."
+            },
+            {
+                id: 20,
+                title: "2023 Acura NSX Type S",
+                price: 169000,
+                year: 2023,
+                mileage: "600 miles",
+                engine: "3.5L Twin-Turbo V6 Hybrid",
+                transmission: "9-Speed Automatic",
+                fuelType: "Hybrid",
+                driveType: "AWD",
+                color: "Indy Yellow Pearl",
+                condition: "Like New",
+                image: "img/acura-nsx.jpg",
+                category: "sports",
+                badges: ["low-mileage"],
+                description: "Experience hybrid supercar technology with this 2023 Acura NSX Type S. This final edition NSX delivers 600 horsepower and represents the pinnacle of Honda engineering."
+            },
+            {
+                id: 21,
+                title: "2022 Cadillac Escalade",
+                price: 95000,
+                year: 2022,
+                mileage: "13,200 miles",
+                engine: "6.2L V8",
+                transmission: "10-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Shadow Metallic",
+                condition: "Excellent",
+                image: "img/cadillac-escalade.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Command the road with this 2022 Cadillac Escalade. This full-size luxury SUV offers spacious seating, advanced technology, and commanding presence."
+            },
+            {
+                id: 22,
+                title: "2023 Genesis GV70",
+                price: 48000,
+                year: 2023,
+                mileage: "3,400 miles",
+                engine: "2.5L Turbo I4",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Adriatic Blue",
+                condition: "Excellent",
+                image: "img/genesis-gv70.jpg",
+                category: "luxury",
+                badges: ["certified", "low-mileage"],
+                description: "Discover luxury redefined with this 2023 Genesis GV70. This premium SUV combines athletic performance with luxurious comfort and advanced safety features."
+            },
+            {
+                id: 23,
+                title: "2022 Jeep Wrangler Rubicon 4xe",
+                price: 52000,
+                year: 2022,
+                mileage: "6,700 miles",
+                engine: "2.0L Turbo I4 Hybrid",
+                transmission: "8-Speed Automatic",
+                fuelType: "Hybrid",
+                driveType: "4WD",
+                color: "Hydro Blue",
+                condition: "Excellent",
+                image: "img/jeep-wrangler.jpg",
+                category: "hybrid",
+                badges: ["certified"],
+                description: "Go anywhere with this 2022 Jeep Wrangler Rubicon 4xe. This plug-in hybrid combines legendary off-road capability with improved fuel efficiency and electric driving range."
+            },
+            {
+                id: 24,
+                title: "2023 Alfa Romeo Giulia Quadrifoglio",
+                price: 75000,
+                year: 2023,
+                mileage: "2,100 miles",
+                engine: "2.9L Twin-Turbo V6",
+                transmission: "8-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "RWD",
+                color: "Rosso Competizione",
+                condition: "Like New",
+                image: "img/alfa-giulia.jpg",
+                category: "sports",
+                badges: ["low-mileage"],
+                description: "Feel the passion of Italian performance with this 2023 Alfa Romeo Giulia Quadrifoglio. This high-performance sedan delivers 505 horsepower and pure driving emotion."
+            },
+            {
+                id: 25,
+                title: "2022 Lincoln Navigator",
+                price: 78000,
+                year: 2022,
+                mileage: "9,500 miles",
+                engine: "3.5L Twin-Turbo V6",
+                transmission: "10-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Infinite Black",
+                condition: "Excellent",
+                image: "img/lincoln-navigator.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Travel in ultimate comfort with this 2022 Lincoln Navigator. This full-size luxury SUV offers premium materials, advanced technology, and spacious accommodations."
+            },
+            {
+                id: 26,
+                title: "2023 Volkswagen ID.4",
+                price: 42000,
+                year: 2023,
+                mileage: "2,900 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Moonstone Grey",
+                condition: "Excellent",
+                image: "img/vw-id4.jpg",
+                category: "electric",
+                badges: ["electric", "low-mileage"],
+                description: "Embrace electric mobility with this 2023 Volkswagen ID.4. This compact electric SUV offers impressive range, spacious interior, and German engineering quality."
+            },
+            {
+                id: 27,
+                title: "2022 Infiniti QX80",
+                price: 68000,
+                year: 2022,
+                mileage: "11,800 miles",
+                engine: "5.6L V8",
+                transmission: "7-Speed Automatic",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Liquid Platinum",
+                condition: "Excellent",
+                image: "img/infiniti-qx80.jpg",
+                category: "luxury",
+                badges: ["certified"],
+                description: "Experience luxury and power with this 2022 Infiniti QX80. This full-size luxury SUV combines impressive towing capacity with refined comfort and advanced features."
+            },
+            {
+                id: 28,
+                title: "2023 Subaru Ascent",
+                price: 35000,
+                year: 2023,
+                mileage: "4,200 miles",
+                engine: "2.4L Turbo H4",
+                transmission: "CVT",
+                fuelType: "Gasoline",
+                driveType: "AWD",
+                color: "Crystal White Pearl",
+                condition: "Excellent",
+                image: "img/subaru-ascent.jpg",
+                category: "suv",
+                badges: ["certified", "low-mileage"],
+                description: "Adventure awaits with this 2023 Subaru Ascent. This three-row SUV offers standard all-wheel drive, excellent safety ratings, and reliable performance for family adventures."
+            },
+            {
+                id: 29,
+                title: "2022 Volvo XC90 Recharge",
+                price: 65000,
+                year: 2022,
+                mileage: "7,600 miles",
+                engine: "2.0L Turbo I4 Hybrid",
+                transmission: "8-Speed Automatic",
+                fuelType: "Hybrid",
+                driveType: "AWD",
+                color: "Crystal White",
+                condition: "Excellent",
+                image: "img/volvo-xc90.jpg",
+                category: "hybrid",
+                badges: ["certified"],
+                description: "Combine luxury and sustainability with this 2022 Volvo XC90 Recharge. This plug-in hybrid SUV offers Swedish luxury, advanced safety features, and impressive efficiency."
+            },
+            {
+                id: 30,
+                title: "2023 BMW i4 M50",
+                price: 68000,
+                year: 2023,
+                mileage: "1,800 miles",
+                engine: "Electric Motor",
+                transmission: "Automatic",
+                fuelType: "Electric",
+                driveType: "AWD",
+                color: "Storm Bay",
+                condition: "Like New",
+                image: "img/bmw-i4.jpg",
+                category: "electric",
+                badges: ["electric", "low-mileage"],
+                description: "Experience electric M performance with this 2023 BMW i4 M50. This high-performance electric sedan delivers 536 horsepower and classic BMW driving dynamics in an electric package."
+            }
+            
+        ];
+
+        // WhatsApp number - Replace with your actual WhatsApp number
+        const whatsappNumber = "+1234567890"; // Replace with your WhatsApp number
+
+        // DOM elements
+        const listingsGrid = document.getElementById('listingsGrid');
+        const modal = document.getElementById('carModal');
+        const closeModal = document.getElementById('closeModal');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const categoryPills = document.querySelectorAll('.category-pill');
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        const categoryPillsContainer = document.querySelector('.category-pills');
+
+        // Current selected category
+        let currentCategory = 'all';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCarCards();
+            setupEventListeners();
+        });
+
+        // Render car cards
+        function renderCarCards() {
+            const filteredCars = currentCategory === 'all' 
+                ? carData 
+                : carData.filter(car => car.category === currentCategory);
+
+            listingsGrid.innerHTML = '';
+
+            filteredCars.forEach(car => {
+                const carCard = createCarCard(car);
+                listingsGrid.appendChild(carCard);
+            });
+        }
+
+        // Create car card element
+        function createCarCard(car) {
+            const card = document.createElement('div');
+            card.className = 'car-card';
+            card.onclick = () => openModal(car);
+
+            const badges = car.badges.map(badge => 
+                `<span class="badge ${badge}">${badge.replace('-', ' ')}</span>`
+            ).join('');
+
+            card.innerHTML = `
+                <div class="car-image">
+                    <img src="${car.image}" alt="${car.title}" loading="lazy">
+                </div>
+                <div class="car-content">
+                    <h3 class="car-title">${car.title}</h3>
+                    <div class="car-price">£${car.price.toLocaleString()}</div>
+                    <div class="car-details">
+                        <div class="car-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${car.year}</span>
+                        </div>
+                        <div class="car-detail">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>${car.mileage}</span>
+                        </div>
+                        <div class="car-detail">
+                            <i class="fas fa-cog"></i>
+                            <span>${car.transmission}</span>
+                        </div>
+                        <div class="car-detail">
+                            <i class="fas fa-gas-pump"></i>
+                            <span>${car.fuelType}</span>
+                        </div>
+                    </div>
+                    <div class="car-badges">
+                        ${badges}
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Open modal with car details
+        function openModal(car) {
+            document.getElementById('modalTitle').textContent = car.title;
+            document.getElementById('modalPrice').textContent = `£${car.price.toLocaleString()}`;
+            document.getElementById('modalYear').textContent = `Year: ${car.year}`;
+            document.getElementById('modalMileage').textContent = `Mileage: ${car.mileage}`;
+            document.getElementById('modalEngine').textContent = `Engine: ${car.engine}`;
+            document.getElementById('modalTransmission').textContent = `Transmission: ${car.transmission}`;
+            document.getElementById('modalFuelType').textContent = `Fuel Type: ${car.fuelType}`;
+            document.getElementById('modalDriveType').textContent = `Drive Type: ${car.driveType}`;
+            document.getElementById('modalColor').textContent = `Color: ${car.color}`;
+            document.getElementById('modalCondition').textContent = `Condition: ${car.condition}`;
+            document.getElementById('modalDescription').textContent = car.description;
+            
+            // Set modal image
+            document.getElementById('modalCarImage').innerHTML = `<img src="${car.image}" alt="${car.title}" loading="lazy">`;
+
+            // Set up WhatsApp button
+            whatsappBtn.onclick = () => {
+                const message = `Hi! I'm interested in the ${car.title} listed for £${car.price.toLocaleString()}. Can you provide more information?`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            };
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModalFunction() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Modal close events
+            closeModal.onclick = closeModalFunction;
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    closeModalFunction();
+                }
+            };
+
+            // Category filter events
+            categoryPills.forEach(pill => {
+                pill.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pills
+                    categoryPills.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked pill
+                    this.classList.add('active');
+                    
+                    // Update current category
+                    currentCategory = this.dataset.category;
+                    
+                    // Re-render car cards
+                    renderCarCards();
+                });
+            });
+
+            // Category navigation arrows
+            if (prevArrow && nextArrow && categoryPillsContainer) {
+                prevArrow.addEventListener('click', function() {
+                    categoryPillsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                
+                nextArrow.addEventListener('click', function() {
+                    categoryPillsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    closeModalFunction();
+                }
+            });
+        }
+        
+        // Car Inquiry Popup Functionality
+        function setupCarInquiryPopup() {
+            const popup = document.getElementById('carInquiryPopup');
+            const popupClose = document.getElementById('carPopupClose');
+            const whatsappBtn = document.getElementById('carPopupWhatsappBtn');
+            const emailBtn = document.getElementById('carPopupEmailBtn');
+            const inquiryMessage = document.getElementById('carInquiryMessage');
+            
+            if (!popup || !whatsappBtn || !emailBtn || !inquiryMessage) {
+                console.error('Required popup elements not found');
+                return;
+            }
+            
+            let hasShownPopup = false;
+            
+            // WhatsApp number - Replace with your actual WhatsApp number
+            const whatsappNumber = "+1234567890";
+            
+            // Email address - Replace with your actual email
+            const emailAddress = "info@automarket.com";
+            
+            // Create observer for categories section
+            const carsSection = document.querySelector('.categories-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasShownPopup) {
+                        // Show popup after a delay
+                        setTimeout(() => {
+                            popup.classList.add('show');
+                            hasShownPopup = true;
+                        }, 2000); // Show after 2 seconds
+                        
+                        // Unobserve after showing once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3 // Show when 30% of the section is visible
+            });
+            
+            if (carsSection) {
+                observer.observe(carsSection);
+            }
+            
+            // Close popup functionality
+            function closePopup() {
+                popup.classList.remove('show');
+            }
+            
+            // Close button click
+            popupClose.addEventListener('click', closePopup);
+            
+            // Close when clicking outside popup
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && popup.classList.contains('show')) {
+                    closePopup();
+                }
+            });
+            
+            // WhatsApp button functionality
+            whatsappBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const message = inquiryMessage.value.trim();
+                if (!message) {
+                    alert('Please enter your message first');
+                    inquiryMessage.focus();
+                    return;
+                }
+                
+                const whatsappMessage = `Hi! I'm looking for a car: ${message}`;
+                const cleanNumber = whatsappNumber.replace(/\D/g, '');
+                const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                try {
+                    const opened = window.open(whatsappUrl, '_blank');
+                    if (!opened) {
+                        window.location.href = whatsappUrl;
+                    }
+                    closePopup();
+                } catch (error) {
+                    console.error('Error opening WhatsApp:', error);
+                    alert('Please copy this URL and paste it in your browser: ' + whatsappUrl);
+                }
+            });
+            
+            // Email button functionality
+            emailBtn.addEventListener('click', () => {
+                const message = inquiryMessage.value.trim();
+                if (!message) {
+                    alert('Please enter your message first');
+                    inquiryMessage.focus();
+                    return;
+                }
+                
+                const emailBody = `Hello,\n\nI'm looking for the following vehicle:\n\n${message}\n\nPlease let me know about available options and pricing.\n\nThank you!`;
+                const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent('Vehicle Inquiry')}&body=${encodeURIComponent(emailBody)}`;
+                
+                window.location.href = mailtoUrl;
+                closePopup();
+            });
+            
+            // Auto-resize textarea
+            inquiryMessage.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        }
+
+        // Initialize car inquiry popup when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupCarInquiryPopup);
+        } else {
+            setupCarInquiryPopup();
+        }
+
+    </script>
+
+    <!-- Car Inquiry Popup -->
+    <div id="carInquiryPopup" class="car-inquiry-popup">
+        <div class="popup-header">
+            <div class="popup-title">
+                <i class="fas fa-car"></i>
+                Looking for a specific car?
+            </div>
+            <button class="popup-close" id="carPopupClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="popup-content">
+            <p class="popup-message">
+                Can't find the perfect vehicle? Tell us what you're looking for and we'll help you find your dream car!
+            </p>
+            <form class="popup-form">
+                <textarea 
+                    class="popup-textarea" 
+                    id="carInquiryMessage" 
+                    placeholder="Describe the car you're looking for (e.g., 2020 Honda Civic, electric SUV under £30k, luxury sedan with low mileage, etc.)"
+                    required
+                ></textarea>
+                <div class="popup-buttons">
+                    <button type="button" class="popup-btn popup-btn-whatsapp" id="carPopupWhatsappBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </button>
+                    <button type="button" class="popup-btn popup-btn-email" id="carPopupEmailBtn">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+   <div class="footer-content">
+       <!-- Newsletter Section -->
+       <section class="footer-newsletter">
+           <div class="newsletter-content">
+               <h2 class="newsletter-title">
+                   <i class="fas fa-envelope"></i>
+                   Stay Updated
+               </h2>
+               <p class="newsletter-subtitle">
+                   Get the latest deals on cars and auto parts delivered straight to your inbox
+               </p>
+               <form class="newsletter-form" id="newsletterForm">
+                   <input 
+                       type="email" 
+                       class="newsletter-input" 
+                       placeholder="Enter your email address"
+                       required
+                   >
+                   <button type="submit" class="newsletter-btn">
+                       <i class="fas fa-paper-plane"></i>
+                       Subscribe
+                   </button>
+               </form>
+           </div>
+       </section>
+
+       <!-- Main Footer -->
+       <section class="footer-main">
+           <div class="footer-container">
+               <div class="footer-grid">
+                   <!-- Brand Section -->
+                   <div class="footer-section footer-brand">
+                       <div class="footer-logo">
+                           <i class="fas fa-car"></i>
+                           <span>AutoMarket</span>
+                       </div>
+                       <p class="footer-description">
+                           Your trusted destination for quality vehicles and automotive parts. 
+                           We've been serving customers with excellence and reliability for over a decade.
+                       </p>
+                       <div class="footer-social">
+                           <a href="#" class="social-link" aria-label="Facebook">
+                               <i class="fab fa-facebook-f"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="Twitter">
+                               <i class="fab fa-twitter"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="Instagram">
+                               <i class="fab fa-instagram"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="YouTube">
+                               <i class="fab fa-youtube"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="LinkedIn">
+                               <i class="fab fa-linkedin-in"></i>
+                           </a>
+                       </div>
+                   </div>
+
+                   <!-- Quick Links -->
+                   <div class="footer-section">
+                       <h3>Quick Links</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-car"></i> Browse Cars</a></li>
+                           <li><a href="#"><i class="fas fa-cogs"></i> Auto Parts</a></li>
+                           <li><a href="#"><i class="fas fa-tools"></i> Services</a></li>
+                           <li><a href="#"><i class="fas fa-calculator"></i> Financing</a></li>
+                           <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Categories -->
+                   <div class="footer-section">
+                       <h3>Categories</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-bolt"></i> Electric Cars</a></li>
+                           <li><a href="#"><i class="fas fa-crown"></i> Luxury Vehicles</a></li>
+                           <li><a href="#"><i class="fas fa-truck-monster"></i> SUVs</a></li>
+                           <li><a href="#"><i class="fas fa-truck-pickup"></i> Trucks</a></li>
+                           <li><a href="#"><i class="fas fa-leaf"></i> Hybrids</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Support -->
+                   <div class="footer-section">
+                       <h3>Support</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                           <li><a href="#"><i class="fas fa-headset"></i> Customer Support</a></li>
+                           <li><a href="#"><i class="fas fa-shield-alt"></i> Warranty</a></li>
+                           <li><a href="#"><i class="fas fa-exchange-alt"></i> Returns</a></li>
+                           <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Contact Info -->
+                   <div class="footer-section">
+                       <h3>Contact Info</h3>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-map-marker-alt"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Address</h4>
+                               <p>123 Auto Street<br>San Jose, CA 95134</p>
+                           </div>
+                       </div>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-phone"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Phone</h4>
+                               <p>+1 (555) 123-4567</p>
+                           </div>
+                       </div>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-envelope"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Email</h4>
+                               <p>info@automarket.com</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <!-- Footer Bottom -->
+               <div class="footer-bottom">
+                   <div class="footer-bottom-content">
+                       <div class="footer-copyright">
+                           <i class="fas fa-copyright"></i>
+                           <span>2025 AutoMarket. All rights reserved.</span>
+                       </div>
+                       <ul class="footer-bottom-links">
+                           <li><a href="#">Privacy Policy</a></li>
+                           <li><a href="#">Terms of Service</a></li>
+                           <li><a href="#">Cookie Policy</a></li>
+                           <li><a href="#">Sitemap</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </section>
+   </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+   <i class="fas fa-arrow-up"></i>
+</button>
+
+<style>
+/* Footer Styles */
+.footer {
+   background: #6B46C1;
+   color: #FFFFFF;
+   position: relative;
+   overflow: hidden;
+}
+
+/* Removed grid pattern overlay */
+
+.footer-content {
+   position: relative;
+   z-index: 1;
+}
+
+/* Newsletter Section */
+.footer-newsletter {
+   background: #6B46C1;
+   padding: 64px 0;
+   text-align: center;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-content {
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.newsletter-title {
+   font-size: 32px;
+   font-weight: 700;
+   margin-bottom: 16px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 16px;
+}
+
+.newsletter-title i {
+   font-size: 36px;
+   opacity: 0.9;
+}
+
+.newsletter-subtitle {
+   font-size: 18px;
+   opacity: 0.9;
+   margin-bottom: 32px;
+}
+
+.newsletter-form {
+   display: flex;
+   gap: 16px;
+   max-width: 500px;
+   margin: 0 auto;
+}
+
+.newsletter-input {
+   flex: 1;
+   padding: 16px 24px;
+   border: none;
+   border-radius: 50px;
+   font-size: 16px;
+   background: rgba(255, 255, 255, 0.95);
+   color: #18181B;
+   transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+   outline: none;
+   background: #FFFFFF;
+   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.newsletter-input::placeholder {
+   color: #71717A;
+}
+
+.newsletter-btn {
+   padding: 16px 32px;
+   background: #FFFFFF;
+   color: #6B46C1;
+   border: none;
+   border-radius: 50px;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+   background: #F4F4F5;
+}
+
+/* Main Footer */
+.footer-main {
+   padding: 64px 0;
+}
+
+.footer-container {
+   max-width: 1440px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.footer-grid {
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+   gap: 64px;
+   margin-bottom: 64px;
+}
+
+.footer-logo {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+   margin-bottom: 24px;
+   font-size: 24px;
+   font-weight: 700;
+}
+
+.footer-logo i {
+   font-size: 32px;
+   color: #FFFFFF;
+}
+
+.footer-description {
+   color: rgba(255, 255, 255, 0.8);
+   margin-bottom: 32px;
+   line-height: 1.6;
+}
+
+.footer-social {
+   display: flex;
+   gap: 16px;
+}
+
+.social-link {
+   width: 48px;
+   height: 48px;
+   background: rgba(255, 255, 255, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #FFFFFF;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
+}
+
+.social-link::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.2);
+   transition: left 0.3s ease;
+   z-index: 0;
+}
+
+.social-link i {
+   position: relative;
+   z-index: 1;
+   font-size: 18px;
+}
+
+.social-link:hover::before {
+   left: 0;
+}
+
+.social-link:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section h3 {
+   font-size: 18px;
+   font-weight: 600;
+   margin-bottom: 24px;
+   color: #FFFFFF;
+   position: relative;
+}
+
+.footer-section h3::after {
+   content: '';
+   position: absolute;
+   bottom: -8px;
+   left: 0;
+   width: 30px;
+   height: 2px;
+   background: #FFFFFF;
+   border-radius: 1px;
+}
+
+.footer-links {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.footer-links a {
+   color: rgba(255, 255, 255, 0.8);
+   text-decoration: none;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   padding: 4px 0;
+}
+
+.footer-links a:hover {
+   color: #FFFFFF;
+   padding-left: 8px;
+}
+
+.footer-links a i {
+   font-size: 14px;
+   width: 16px;
+}
+
+/* Contact Info */
+.contact-item {
+   display: flex;
+   align-items: flex-start;
+   gap: 16px;
+   margin-bottom: 24px;
+   color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-icon {
+   width: 40px;
+   height: 40px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #FFFFFF;
+   flex-shrink: 0;
+}
+
+.contact-info h4 {
+   color: #FFFFFF;
+   font-weight: 600;
+   margin-bottom: 4px;
+}
+
+.contact-info {
+   text-align: left;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   padding: 32px 0;
+}
+
+.footer-bottom-content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 24px;
+}
+
+.footer-copyright {
+   color: rgba(255, 255, 255, 0.8);
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.footer-copyright i {
+   color: #FFFFFF;
+}
+
+.footer-bottom-links {
+   display: flex;
+   gap: 32px;
+   list-style: none;
+}
+
+.footer-bottom-links a {
+   color: rgba(255, 255, 255, 0.8);
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+   color: #FFFFFF;
+}
+
+/* Back to Top Button */
+.back-to-top {
+   position: fixed;
+   bottom: 30px;
+   right: 30px;
+   width: 56px;
+   height: 56px;
+   background: #6B46C1;
+   border: none;
+   border-radius: 50px;
+   color: #FFFFFF;
+   cursor: pointer;
+   font-size: 20px;
+   transition: all 0.3s ease;
+   opacity: 0;
+   visibility: hidden;
+   z-index: 1000;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top.visible {
+   opacity: 1;
+   visibility: visible;
+}
+
+.back-to-top:hover {
+   transform: translateY(-3px);
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+   .footer-grid {
+       grid-template-columns: 1fr 1fr 1fr;
+   }
+
+   .footer-brand {
+       grid-column: span 3;
+   }
+}
+
+@media (max-width: 768px) {
+   .footer-main {
+       padding: 48px 0;
+   }
+
+   .footer-newsletter {
+       padding: 48px 0;
+   }
+
+   .footer-container {
+       padding: 0 24px;
+   }
+
+   .footer-grid {
+       grid-template-columns: 1fr 1fr;
+       gap: 32px;
+   }
+
+   .footer-brand {
+       grid-column: span 2;
+       text-align: center;
+       margin-bottom: 24px;
+   }
+
+   .footer-social {
+       justify-content: center;
+   }
+
+   .newsletter-content {
+       padding: 0 32px;
+   }
+
+   .newsletter-form {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .newsletter-input {
+       width: 100%;
+   }
+
+   .newsletter-btn {
+       width: 100%;
+   }
+
+   .newsletter-title {
+       font-size: 24px;
+   }
+
+   .newsletter-subtitle {
+       font-size: 16px;
+   }
+
+   .footer-bottom-content {
+       flex-direction: column;
+       text-align: center;
+       gap: 16px;
+   }
+
+   .footer-bottom-links {
+       flex-wrap: wrap;
+       justify-content: center;
+       gap: 16px;
+   }
+
+   .back-to-top {
+       width: 48px;
+       height: 48px;
+       bottom: 20px;
+       right: 20px;
+   }
+
+   .contact-item {
+       margin-bottom: 20px;
+   }
+}
+
+@media (max-width: 600px) {
+   .footer-grid {
+       grid-template-columns: 1fr 1fr;
+       gap: 24px;
+   }
+
+   .footer-section h3 {
+       font-size: 16px;
+       margin-bottom: 16px;
+   }
+
+   .footer-links {
+       gap: 12px;
+   }
+
+   .contact-item {
+       flex-direction: column;
+       text-align: center;
+       gap: 8px;
+   }
+
+   .contact-icon {
+       align-self: center;
+   }
+
+   .newsletter-content {
+       padding: 0 20px;
+   }
+}
+
+@media (max-width: 480px) {
+   .footer-main {
+       padding: 32px 0;
+   }
+
+   .footer-newsletter {
+       padding: 32px 0;
+   }
+
+   .footer-container {
+       padding: 0 16px;
+   }
+
+   .footer-grid {
+       grid-template-columns: 1fr;
+       gap: 32px;
+   }
+
+   .footer-brand {
+       grid-column: span 1;
+       text-align: center;
+   }
+
+   .footer-section {
+       text-align: center;
+   }
+
+   .footer-links {
+       align-items: center;
+   }
+
+   .footer-social {
+       justify-content: center;
+   }
+
+   .newsletter-content {
+       padding: 0 16px;
+   }
+
+   .newsletter-title {
+       font-size: 20px;
+       flex-direction: column;
+       gap: 8px;
+   }
+
+   .newsletter-title i {
+       font-size: 24px;
+   }
+
+   .newsletter-subtitle {
+       font-size: 14px;
+       margin-bottom: 24px;
+   }
+
+   .newsletter-form {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .newsletter-input {
+       width: 100%;
+   }
+
+   .newsletter-btn {
+       width: 100%;
+   }
+
+   .footer-bottom {
+       padding: 24px 0;
+   }
+
+   .footer-bottom-content {
+       flex-direction: column;
+       text-align: center;
+       gap: 16px;
+   }
+
+   .footer-bottom-links {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .footer-bottom-links a {
+       padding: 8px 0;
+   }
+
+   .back-to-top {
+       width: 44px;
+       height: 44px;
+       bottom: 16px;
+       right: 16px;
+   }
+
+   .back-to-top i {
+       font-size: 16px;
+   }
+
+   .contact-item {
+       flex-direction: column;
+       text-align: center;
+       gap: 8px;
+       margin-bottom: 16px;
+   }
+
+   .contact-icon {
+       align-self: center;
+   }
+
+   .social-link {
+       width: 40px;
+       height: 40px;
+   }
+
+   .social-link i {
+       font-size: 16px;
+   }
+}
+
+@media (max-width: 360px) {
+   .footer-container {
+       padding: 0 12px;
+   }
+
+   .newsletter-content {
+       padding: 0 12px;
+   }
+
+   .footer-logo {
+       font-size: 20px;
+   }
+
+   .footer-logo i {
+       font-size: 24px;
+   }
+
+   .newsletter-title {
+       font-size: 18px;
+   }
+
+   .newsletter-input,
+   .newsletter-btn {
+       padding: 12px 16px;
+   }
+
+   .footer-section h3 {
+       font-size: 16px;
+   }
+
+   .footer-links {
+       gap: 8px;
+   }
+}
+
+/* Parts Inquiry Popup */
+.parts-inquiry-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--gray-200);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.parts-inquiry-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.popup-header {
+    background: var(--primary-gradient);
+    color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.popup-title {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 18px;
+    cursor: pointer;
+    padding: var(--space-xs);
+    border-radius: var(--border-radius-sm);
+    transition: background 0.2s ease;
+}
+
+.popup-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.popup-content {
+    padding: var(--space-lg);
+}
+
+.popup-message {
+    color: var(--gray-700);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.popup-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: var(--space-md);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.popup-textarea:focus {
+    outline: none;
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+}
+
+.popup-textarea::placeholder {
+    color: var(--gray-500);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.popup-btn {
+    flex: 1;
+    padding: var(--space-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.popup-btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+}
+
+.popup-btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-1px);
+}
+
+.popup-btn-email {
+    background: var(--primary-main);
+    color: var(--white);
+}
+
+.popup-btn-email:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.popup-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsive popup */
+@media (max-width: 768px) {
+    .parts-inquiry-popup {
+        width: 300px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .parts-inquiry-popup {
+        width: 280px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .popup-content {
+        padding: var(--space-md);
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+    }
+    
+    .popup-btn {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+// Newsletter form submission
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+   e.preventDefault();
+   
+   const email = this.querySelector('.newsletter-input').value;
+   const button = this.querySelector('.newsletter-btn');
+   const originalContent = button.innerHTML;
+   
+   // Show loading state
+   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+   button.disabled = true;
+   
+   // Simulate API call
+   setTimeout(() => {
+       // Show success message
+       button.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+       button.style.background = '#10B981';
+       
+       // Reset form
+       this.reset();
+       
+       // Reset button after 2 seconds
+       setTimeout(() => {
+           button.innerHTML = originalContent;
+           button.style.background = '';
+           button.disabled = false;
+       }, 2000);
+   }, 1500);
+});
+
+// Back to top functionality
+const backToTopButton = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+   if (window.pageYOffset > 300) {
+       backToTopButton.classList.add('visible');
+   } else {
+       backToTopButton.classList.remove('visible');
+   }
+});
+
+backToTopButton.addEventListener('click', function() {
+   window.scrollTo({
+       top: 0,
+       behavior: 'smooth'
+   });
+});
+</script>
+
+

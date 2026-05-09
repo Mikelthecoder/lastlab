@@ -1,0 +1,3318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket - Enhanced Header Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-main: #6B46C1;
+            --primary-light: #8B6FD9;
+            --primary-dark: #4F3291;
+            --primary-gradient: linear-gradient(135deg, #6B46C1, #8B6FD9);
+            --secondary-gradient: linear-gradient(135deg, #8B6FD9, #A78BFF);
+            --gray-900: #18181B;
+            --gray-800: #27272A;
+            --gray-700: #3F3F46;
+            --gray-600: #52525B;
+            --gray-500: #71717A;
+            --gray-400: #A1A1AA;
+            --gray-300: #D4D4D8;
+            --gray-200: #E4E4E7;
+            --gray-100: #F4F4F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            
+            /* Typography */
+            --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Borders & Shadows */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--gray-900);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--gray-50);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: var(--border-radius-full);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            gap: var(--space-sm);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2px; /* Added margin to prevent button from being cut off */
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(107, 70, 193, 0.4);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transition: all 0.6s ease;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding-top: 4px; /* Added padding to move content down slightly */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 var(--space-xl);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30%;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: var(--border-radius-full);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: var(--space-2xl);
+            height: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--space-xs);
+        }
+
+        nav a:hover {
+            color: var(--primary-main);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            opacity: 0;
+            border-radius: var(--border-radius-full);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gray-800);
+            border-radius: var(--border-radius-full);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover span {
+            background: var(--primary-main);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1100;
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius-full);
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-close:hover {
+            background: var(--gray-200);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .mobile-nav a {
+            color: var(--gray-900);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary-main);
+            padding-left: var(--space-sm);
+        }
+
+        .mobile-nav a i {
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover i {
+            transform: translateX(4px);
+        }
+
+        .mobile-user-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Fancy placeholder content to show scroll effect */
+        .content-placeholder {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .user-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu -->
+    <div class="overlay"></div>
+    <div class="mobile-menu">
+        <div class="menu-header">
+            <div class="logo">AutoMarket</div>
+            <div class="menu-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="mobile-nav">
+            <a href="#browse">Browse Vehicles <i class="fas fa-chevron-right"></i></a>
+            <a href="#sell">Browse Parts <i class="fas fa-chevron-right"></i></a>
+            <a href="#finance">Delivery <i class="fas fa-chevron-right"></i></a>
+            <a href="#about">About Us <i class="fas fa-chevron-right"></i></a>
+            <a href="#contact">Contact <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="mobile-user-actions">
+            <a href="#" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> Get Started
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">AutoMarket</div>
+                <nav>
+                    <a href="#browse">Browse</a>
+                    <a href="#cars">Cars</a>
+                    <a href="#finance">Parts</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="user-actions">
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content placeholder to demonstrate scroll effect -->
+    <div class="content-placeholder" style="display: none;">
+        <!-- Hidden content -->
+    </div>
+
+    <!-- Script to show how this section works independently -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuClose = document.querySelector('.menu-close');
+            const overlay = document.querySelector('.overlay');
+            
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            menuClose.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            overlay.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Enhanced Sticky Header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                const logo = document.querySelector('.logo');
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    header.style.height = '65px';
+                    header.style.boxShadow = '0 4px 20px rgba(107, 70, 193, 0.15)';
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    logo.style.fontSize = '24px';
+                } else {
+                    header.style.height = '80px';
+                    header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                    header.style.background = 'rgba(255, 255, 255, 0.85)';
+                    logo.style.fontSize = '28px';
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+<!-- Parts Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket - Spare Parts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --primary-main: #6B46C1;
+            --primary-light: #8B6FD9;
+            --primary-dark: #4F3291;
+            --primary-gradient: linear-gradient(135deg, #6B46C1, #8B6FD9);
+            --gray-900: #18181B;
+            --gray-800: #27272A;
+            --gray-700: #3F3F46;
+            --gray-600: #52525B;
+            --gray-500: #71717A;
+            --gray-400: #A1A1AA;
+            --gray-300: #D4D4D8;
+            --gray-200: #E4E4E7;
+            --gray-100: #F4F4F5;
+            --gray-50: #FAFAFA;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --accent-orange: #F97316;
+            --accent-blue: #3B82F6;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            
+            /* Typography */
+            --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Borders & Shadows */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-full: 9999px;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--gray-900);
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: var(--gray-50);
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Hero Section */
+        .parts-hero-section {
+            background: 
+                linear-gradient(135deg, rgba(107, 70, 193, 0.9), rgba(139, 111, 217, 0.9)),
+                url('img/back1.jpg') center/cover no-repeat;
+            color: var(--white);
+            padding: var(--space-3xl) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+
+        .parts-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .parts-hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .parts-hero-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: var(--space-xl);
+        }
+
+        .parts-hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-3xl);
+            flex-wrap: wrap;
+        }
+
+        .parts-stat-item {
+            text-align: center;
+        }
+
+        .parts-stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .parts-stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Categories Section */
+        .parts-categories-section {
+            padding: var(--space-3xl) 0 var(--space-lg);
+            background: var(--white);
+            position: relative;
+        }
+
+        .parts-categories-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gray-300), transparent);
+        }
+
+        .parts-categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .parts-categories-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .parts-categories-nav {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .parts-nav-arrow {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius-full);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-800);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .parts-nav-arrow:hover {
+            background: var(--primary-main);
+            color: var(--white);
+            border-color: var(--primary-main);
+        }
+
+        .parts-category-pills {
+            display: flex;
+            gap: var(--space-md);
+            overflow-x: auto;
+            padding: var(--space-sm) 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            padding-bottom: var(--space-md);
+        }
+
+        .parts-category-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .parts-category-pill {
+            white-space: nowrap;
+            padding: 14px 28px;
+            border-radius: var(--border-radius-full);
+            background: var(--white);
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        .parts-category-pill i {
+            font-size: 14px;
+        }
+
+        .parts-category-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            color: var(--primary-main);
+        }
+
+        .parts-category-pill.active {
+            background: var(--primary-gradient);
+            color: var(--white);
+            border-color: var(--primary-main);
+            box-shadow: 0 4px 12px rgba(107, 70, 193, 0.3);
+        }
+
+        /* Parts Listings Section */
+        .parts-listings-section {
+            padding: var(--space-2xl) 0;
+            background: var(--gray-50);
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .part-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--gray-200);
+        }
+
+        .part-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .part-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 48px;
+            position: relative;
+        }
+
+        .part-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(0,0,0,0.02) 50%, transparent 51%);
+        }
+
+        .part-content {
+            padding: var(--space-lg);
+        }
+
+        .part-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-sm);
+        }
+
+        .part-brand {
+            color: var(--primary-main);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .part-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-main);
+            margin-bottom: var(--space-md);
+        }
+
+        .part-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+        }
+
+        .part-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .part-detail i {
+            color: var(--primary-main);
+            width: 16px;
+        }
+
+        .part-badges {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: var(--border-radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.in-stock {
+            background: #DCFCE7;
+            color: var(--success);
+        }
+
+        .badge.genuine {
+            background: #DBEAFE;
+            color: var(--accent-blue);
+        }
+
+        .badge.warranty {
+            background: #FEF3C7;
+            color: var(--warning);
+        }
+
+        .badge.premium {
+            background: #F3E8FF;
+            color: var(--primary-main);
+        }
+
+        .badge.oem {
+            background: #FFEDD5;
+            color: var(--accent-orange);
+        }
+
+        .part-action {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: var(--border-radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary-main);
+            color: var(--white);
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+            padding: 11px 16px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        /* Modal Styles */
+        .parts-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .parts-modal-content {
+            background: var(--white);
+            margin: 3% auto;
+            padding: 0;
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .parts-modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .parts-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .parts-close {
+            color: var(--gray-500);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .parts-close:hover {
+            color: var(--gray-800);
+        }
+
+        .parts-modal-body {
+            padding: var(--space-xl);
+        }
+
+        .parts-modal-image {
+            width: 100%;
+            height: 300px;
+            background: var(--gray-100);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 64px;
+        }
+
+        .parts-modal-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .parts-info-group h4 {
+            color: var(--gray-900);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .parts-info-group p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-xs);
+        }
+
+        .parts-modal-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-main);
+            margin-bottom: var(--space-lg);
+        }
+
+        .parts-description {
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+
+        .parts-modal-actions {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .parts-whatsapp-btn {
+            background: #25D366;
+            color: var(--white);
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex: 1;
+            justify-content: center;
+        }
+
+        .parts-whatsapp-btn:hover {
+            background: #20B358;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .parts-whatsapp-btn i {
+            font-size: 18px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .parts-hero-title {
+                font-size: 36px;
+            }
+            
+            .parts-hero-stats {
+                gap: var(--space-xl);
+            }
+            
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .parts-category-pills {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .parts-modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+            
+            .parts-modal-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .parts-modal-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .parts-categories-header {
+                flex-direction: column;
+                gap: var(--space-md);
+                align-items: flex-start;
+            }
+            
+            .part-action {
+                flex-direction: column;
+            }
+            
+            .parts-hero-title {
+                font-size: 28px;
+            }
+            
+            .parts-hero-stats {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: var(--space-3xl) 0;
+            background: var(--white);
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .reviews-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-md);
+        }
+
+        .reviews-subtitle {
+            font-size: 18px;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-2xl);
+        }
+
+        .review-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .review-info {
+            flex: 1;
+        }
+
+        .review-name {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-xs);
+        }
+
+        .review-date {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 2px;
+            margin-bottom: var(--space-md);
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 16px;
+        }
+
+        .star.empty {
+            color: var(--gray-300);
+        }
+
+        .review-text {
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .review-purchase {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        .review-purchase i {
+            color: var(--primary-main);
+        }
+
+        .reviews-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2xl);
+            margin-top: var(--space-xl);
+        }
+
+        .review-stat {
+            text-align: center;
+        }
+
+        .review-stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-main);
+            display: block;
+        }
+
+        .review-stat-label {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        /* Reviews Responsive */
+        @media (max-width: 768px) {
+            .reviews-title {
+                font-size: 36px;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reviews-stats {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reviews-title {
+                font-size: 28px;
+            }
+            
+            .review-card {
+                padding: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="parts-hero-section">
+        <div class="container">
+            <div class="parts-hero-content">
+                <h1 class="parts-hero-title">Premium Auto Parts</h1>
+                <p class="parts-hero-subtitle">Quality spare parts, accessories, and tools for your vehicle</p>
+                <div class="parts-hero-stats">
+                    <div class="parts-stat-item">
+                        <span class="parts-stat-number" data-target="5000+">0</span>
+                        <span class="parts-stat-label">Parts Available</span>
+                    </div>
+                    <div class="parts-stat-item">
+                        <span class="parts-stat-number" data-target="50+">0</span>
+                        <span class="parts-stat-label">Top Brands</span>
+                    </div>
+                    <div class="parts-stat-item">
+                        <span class="parts-stat-number" data-target="24/7">24/7</span>
+                        <span class="parts-stat-label">Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="parts-categories-section">
+        <div class="container">
+            <div class="parts-categories-header">
+                <h2>Browse Categories</h2>
+                <div class="parts-categories-nav">
+                    <div class="parts-nav-arrow parts-prev-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="parts-nav-arrow parts-next-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="parts-category-pills">
+                <a href="#" class="parts-category-pill active" data-category="all">
+                    <i class="fas fa-th-large"></i> All Parts
+                </a>
+                <a href="#" class="parts-category-pill" data-category="batteries">
+                    <i class="fas fa-battery-three-quarters"></i> Batteries
+                </a>
+                <a href="#" class="parts-category-pill" data-category="oils">
+                    <i class="fas fa-oil-can"></i> Oils & Fluids
+                </a>
+                <a href="#" class="parts-category-pill" data-category="electrics">
+                    <i class="fas fa-bolt"></i> Electrics
+                </a>
+                <a href="#" class="parts-category-pill" data-category="tires">
+                    <i class="fas fa-circle"></i> Tires
+                </a>
+                <a href="#" class="parts-category-pill" data-category="tools">
+                    <i class="fas fa-tools"></i> Tools
+                </a>
+                <a href="#" class="parts-category-pill" data-category="body">
+                    <i class="fas fa-car-side"></i> Body Parts
+                </a>
+                <a href="#" class="parts-category-pill" data-category="filters">
+                    <i class="fas fa-filter"></i> Filters
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parts Listings Section -->
+    <section class="parts-listings-section">
+        <div class="container">
+            <div class="parts-grid" id="partsGrid">
+                <!-- Part cards will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Modal -->
+    <div id="partsModal" class="parts-modal">
+        <div class="parts-modal-content">
+            <div class="parts-modal-header">
+                <h2 class="parts-modal-title" id="partsModalTitle">Part Details</h2>
+                <span class="parts-close" id="partsCloseModal">&times;</span>
+            </div>
+            <div class="parts-modal-body">
+                <div class="parts-modal-image" id="partsModalImage">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="parts-modal-price" id="partsModalPrice">$0</div>
+                <div class="parts-modal-info">
+                    <div class="parts-info-group">
+                        <h4>Product Details</h4>
+                        <p id="partsModalBrand">Brand: -</p>
+                        <p id="partsModalPartNumber">Part Number: -</p>
+                        <p id="partsModalCompatibility">Compatibility: -</p>
+                        <p id="partsModalWarranty">Warranty: -</p>
+                    </div>
+                    <div class="parts-info-group">
+                        <h4>Specifications</h4>
+                        <p id="partsModalCondition">Condition: -</p>
+                        <p id="partsModalMaterial">Material: -</p>
+                        <p id="partsModalWeight">Weight: -</p>
+                        <p id="partsModalStock">Stock: -</p>
+                    </div>
+                </div>
+                <div class="parts-description" id="partsModalDescription">
+                    <!-- Description will be inserted here -->
+                </div>
+                <div class="parts-modal-actions">
+                    <button class="parts-whatsapp-btn" id="partsWhatsappBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        Contact Us on WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Parts data
+        const autoPartsData = [
+            {
+                id: 1,
+                title: "DieHard Advanced Gold AGM Battery",
+                brand: "DieHard",
+                price: 189.99,
+                partNumber: "DH-AGM-94R",
+                compatibility: "Most vehicles",
+                warranty: "3 years",
+                condition: "New",
+                material: "AGM Technology",
+                weight: "45 lbs",
+                stock: "In Stock",
+                category: "oils",
+                badges: ["in-stock", "genuine"],
+                description: "Specially formulated motor oil for vehicles with over 75,000 miles. Contains seal conditioners to reduce leaks and MaxLife technology to prevent engine wear. Helps restore engine performance."
+            },
+            {
+                id: 10,
+                title: "LED Headlight Conversion Kit",
+                brand: "Philips",
+                price: 79.99,
+                partNumber: "PHIL-LED-H7",
+                compatibility: "H7 Bulb Type",
+                warranty: "2 years",
+                condition: "New",
+                material: "LED Technology",
+                weight: "0.8 lbs",
+                stock: "In Stock",
+                category: "electrics",
+                badges: ["in-stock", "premium", "warranty"],
+                description: "Bright LED headlight conversion kit that provides 3x more light than halogen bulbs. Features instant on/off, longer lifespan, and improved visibility. Easy plug-and-play installation with no modifications required."
+            },
+            {
+                id: 11,
+                title: "Continental ExtremeContact DWS06",
+                brand: "Continental",
+                price: 159.99,
+                partNumber: "CONT-DWS06-225",
+                compatibility: "225/60R16",
+                warranty: "6 years",
+                condition: "New",
+                material: "Silica Plus Technology",
+                weight: "24 lbs",
+                stock: "In Stock",
+                category: "tires",
+                badges: ["in-stock", "genuine", "warranty"],
+                description: "All-season ultra-high-performance tire with excellent wet and dry traction. Features SportPlus Technology for enhanced handling and QuickView indicators for easy tread wear monitoring."
+            },
+            {
+                id: 12,
+                title: "DeWalt 20V MAX Impact Wrench",
+                brand: "DeWalt",
+                price: 199.99,
+                partNumber: "DEW-DCF899P1",
+                compatibility: "Universal",
+                warranty: "3 years",
+                condition: "New",
+                material: "Brushless Motor",
+                weight: "7.2 lbs",
+                stock: "In Stock",
+                category: "tools",
+                badges: ["in-stock", "premium", "warranty"],
+                description: "High-torque impact wrench with brushless motor for maximum runtime and power. Delivers up to 700 ft-lbs of torque for the toughest fastening applications. Includes battery and charger."
+            },
+            {
+                id: 13,
+                title: "Bosch Platinum Spark Plugs",
+                brand: "Bosch",
+                price: 12.99,
+                partNumber: "BOSCH-6723",
+                compatibility: "Most vehicles",
+                warranty: "1 year",
+                condition: "New",
+                material: "Platinum",
+                weight: "0.2 lbs",
+                stock: "In Stock",
+                category: "electrics",
+                badges: ["in-stock", "genuine"],
+                description: "High-performance platinum spark plugs with superior ignition and longer life. Provides better fuel economy and reduced emissions."
+            },
+            {
+                id: 14,
+                title: "Castrol GTX High Mileage Motor Oil",
+                brand: "Castrol",
+                price: 24.99,
+                partNumber: "CAST-GTX-5W30",
+                compatibility: "High mileage vehicles",
+                warranty: "Limited",
+                condition: "New",
+                material: "Synthetic Blend",
+                weight: "5 lbs",
+                stock: "In Stock",
+                category: "oils",
+                badges: ["in-stock", "premium"],
+                description: "Specially formulated for vehicles with over 75,000 miles. Helps reduce oil burn-off and contains seal conditioners to prevent leaks."
+            },
+            {
+                id: 15,
+                title: "Monroe Quick-Strut Complete Assembly",
+                brand: "Monroe",
+                price: 189.99,
+                partNumber: "MON-QS171",
+                compatibility: "Honda Civic 2016-2021",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Steel/Aluminum",
+                weight: "15 lbs",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "warranty", "oem"],
+                description: "Complete strut assembly including spring, mount, and bearing plate. Ready to install with no assembly required."
+            },
+            {
+                id: 16,
+                title: "K&N Cold Air Intake System",
+                brand: "K&N",
+                price: 299.99,
+                partNumber: "KN-57-3509",
+                compatibility: "Ford F-150 2015-2020",
+                warranty: "10 years",
+                condition: "New",
+                material: "Aluminum",
+                weight: "8 lbs",
+                stock: "In Stock",
+                category: "filters",
+                badges: ["in-stock", "premium", "warranty"],
+                description: "High-flow air intake system that increases horsepower and acceleration. Includes washable and reusable air filter."
+            },
+            {
+                id: 17,
+                title: "Michelin CrossClimate2 All-Season Tire",
+                brand: "Michelin",
+                price: 179.99,
+                partNumber: "MICH-CC2-225",
+                compatibility: "225/65R17",
+                warranty: "6 years",
+                condition: "New",
+                material: "EverGrip Technology",
+                weight: "26 lbs",
+                stock: "In Stock",
+                category: "tires",
+                badges: ["in-stock", "genuine", "warranty"],
+                description: "All-season tire with exceptional wet weather performance and long-lasting tread life. Features EverGrip technology."
+            },
+            {
+                id: 18,
+                title: "Duralast Gold Ceramic Brake Pads",
+                brand: "Duralast",
+                price: 79.99,
+                partNumber: "DUR-DG1363",
+                compatibility: "Toyota Camry 2018-2023",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Ceramic",
+                weight: "4 lbs",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "warranty", "premium"],
+                description: "Low-dust ceramic brake pads with excellent stopping power and reduced noise. Includes hardware kit."
+            },
+            {
+                id: 19,
+                title: "ACDelco Professional Battery",
+                brand: "ACDelco",
+                price: 149.99,
+                partNumber: "ACD-48AGM",
+                compatibility: "Most vehicles",
+                warranty: "3 years",
+                condition: "New",
+                material: "AGM",
+                weight: "42 lbs",
+                stock: "In Stock",
+                category: "batteries",
+                badges: ["in-stock", "genuine", "warranty"],
+                description: "Maintenance-free AGM battery with excellent cold-cranking performance and vibration resistance."
+            },
+            {
+                id: 20,
+                title: "Flowmaster Super 44 Muffler",
+                brand: "Flowmaster",
+                price: 129.99,
+                partNumber: "FLOW-9430452",
+                compatibility: "Universal 2.5\" inlet",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Aluminized Steel",
+                weight: "12 lbs",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "warranty", "performance"],
+                description: "Aggressive sound muffler with chambered design for maximum performance and deep, rich tone."
+            },
+            {
+                id: 21,
+                title: "NGK Iridium IX Spark Plugs",
+                brand: "NGK",
+                price: 19.99,
+                partNumber: "NGK-BKR7EIX",
+                compatibility: "Most import vehicles",
+                warranty: "1 year",
+                condition: "New",
+                material: "Iridium",
+                weight: "0.3 lbs",
+                stock: "In Stock",
+                category: "electrics",
+                badges: ["in-stock", "premium", "genuine"],
+                description: "Premium iridium spark plugs with superior ignitability and longer service life. Delivers outstanding performance."
+            },
+            {
+                id: 22,
+                title: "Mobil 1 Full Synthetic Motor Oil",
+                brand: "Mobil 1",
+                price: 34.99,
+                partNumber: "MOB1-5W30",
+                compatibility: "All vehicles",
+                warranty: "Limited",
+                condition: "New",
+                material: "Full Synthetic",
+                weight: "5.5 lbs",
+                stock: "In Stock",
+                category: "oils",
+                badges: ["in-stock", "premium", "synthetic"],
+                description: "Advanced full synthetic motor oil with superior engine protection and performance in extreme temperatures."
+            },
+            {
+                id: 23,
+                title: "Craftsman 230-Piece Tool Set",
+                brand: "Craftsman",
+                price: 149.99,
+                partNumber: "CRAFT-CMMT12063",
+                compatibility: "Universal",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Chrome Vanadium Steel",
+                weight: "18 lbs",
+                stock: "In Stock",
+                category: "tools",
+                badges: ["in-stock", "warranty", "premium"],
+                description: "Complete tool set with sockets, wrenches, and accessories. Includes carrying case and lifetime warranty."
+            },
+            {
+                id: 24,
+                title: "Rain-X Latitude Water Repelling Wiper Blades",
+                brand: "Rain-X",
+                price: 29.99,
+                partNumber: "RAINX-5079275",
+                compatibility: "22\" Universal",
+                warranty: "1 year",
+                condition: "New",
+                material: "Synthetic Rubber",
+                weight: "1 lb",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "warranty"],
+                description: "Premium beam wiper blades with water-repelling coating for superior visibility in all weather conditions."
+            },
+            {
+                id: 25,
+                title: "Fram Extra Guard Air Filter",
+                brand: "Fram",
+                price: 14.99,
+                partNumber: "FRAM-CA10677",
+                compatibility: "Honda Accord 2018-2023",
+                warranty: "1 year",
+                condition: "New",
+                material: "Pleated Paper",
+                weight: "0.5 lbs",
+                stock: "In Stock",
+                category: "filters",
+                badges: ["in-stock", "genuine"],
+                description: "High-quality air filter that captures 95% of dirt and contaminants to protect your engine and improve performance."
+            },
+            {
+                id: 26,
+                title: "Optima RedTop Starting Battery",
+                brand: "Optima",
+                price: 219.99,
+                partNumber: "OPT-8002-002",
+                compatibility: "Most vehicles",
+                warranty: "3 years",
+                condition: "New",
+                material: "AGM SpiralCell",
+                weight: "38 lbs",
+                stock: "In Stock",
+                category: "batteries",
+                badges: ["in-stock", "premium", "warranty"],
+                description: "High-performance starting battery with exceptional starting power and vibration resistance. SpiralCell technology."
+            },
+            {
+                id: 27,
+                title: "Bilstein B4 OE Replacement Shock Absorber",
+                brand: "Bilstein",
+                price: 89.99,
+                partNumber: "BIL-19-062186",
+                compatibility: "BMW 3 Series 2012-2018",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Monotube Gas",
+                weight: "6 lbs",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "oem", "warranty"],
+                description: "OE replacement shock absorber with monotube design for consistent performance and improved handling."
+            },
+            {
+                id: 28,
+                title: "Motorcraft Fuel Filter",
+                brand: "Motorcraft",
+                price: 24.99,
+                partNumber: "MOTO-FG1060",
+                compatibility: "Ford F-150 2015-2020",
+                warranty: "2 years",
+                condition: "New",
+                material: "Paper Element",
+                weight: "1.2 lbs",
+                stock: "In Stock",
+                category: "filters",
+                badges: ["in-stock", "oem", "genuine"],
+                description: "OEM fuel filter that removes contaminants and ensures clean fuel delivery to your engine for optimal performance."
+            },
+            {
+                id: 29,
+                title: "Goodyear Assurance WeatherReady",
+                brand: "Goodyear",
+                price: 169.99,
+                partNumber: "GOOD-407038374",
+                compatibility: "215/60R16",
+                warranty: "6 years",
+                condition: "New",
+                material: "Weather Reactive Technology",
+                weight: "22 lbs",
+                stock: "In Stock",
+                category: "tires",
+                badges: ["in-stock", "genuine", "warranty"],
+                description: "All-season tire with Weather Reactive Technology that adapts to changing weather conditions for superior traction."
+            },
+            {
+                id: 30,
+                title: "Denso Cabin Air Filter",
+                brand: "Denso",
+                price: 19.99,
+                partNumber: "DENSO-453-2074",
+                compatibility: "Toyota Prius 2016-2022",
+                warranty: "1 year",
+                condition: "New",
+                material: "Activated Carbon",
+                weight: "0.8 lbs",
+                stock: "In Stock",
+                category: "filters",
+                badges: ["in-stock", "genuine"],
+                description: "Premium cabin air filter with activated carbon that removes odors, pollen, and harmful gases for cleaner cabin air."
+            },
+            {
+                id: 31,
+                title: "Valvoline MaxLife Engine Oil",
+                brand: "Valvoline",
+                price: 28.99,
+                partNumber: "VAL-ML5W30",
+                compatibility: "High mileage vehicles",
+                warranty: "Limited",
+                condition: "New",
+                material: "Synthetic Blend",
+                weight: "5.2 lbs",
+                stock: "In Stock",
+                category: "oils",
+                badges: ["in-stock", "premium"],
+                description: "Specially formulated for vehicles with 75,000+ miles. Contains seal conditioners and reduces oil burn-off."
+            },
+            {
+                id: 32,
+                title: "Wagner ThermoQuiet Brake Pads",
+                brand: "Wagner",
+                price: 69.99,
+                partNumber: "WAG-QC1324",
+                compatibility: "Nissan Altima 2019-2023",
+                warranty: "Limited lifetime",
+                condition: "New",
+                material: "Ceramic",
+                weight: "3.5 lbs",
+                stock: "In Stock",
+                category: "body",
+                badges: ["in-stock", "warranty"],
+                description: "ThermoQuiet ceramic brake pads with advanced friction formula for quiet operation and excellent stopping power."
+            }
+        ];
+
+        // WhatsApp number - Replace with your actual WhatsApp number
+        const autoPartsWhatsappNumber = "+1234567890"; // Replace with your WhatsApp number
+
+        // DOM elements for parts section
+        const autoPartsGrid = document.getElementById('partsGrid');
+        const autoPartsModal = document.getElementById('partsModal');
+        const autoPartsCloseModal = document.getElementById('partsCloseModal');
+        const autoPartsWhatsappBtn = document.getElementById('partsWhatsappBtn');
+        const autoPartsCategoryPills = document.querySelectorAll('.parts-category-pill');
+        const autoPartsPrevArrow = document.querySelector('.parts-prev-arrow');
+        const autoPartsNextArrow = document.querySelector('.parts-next-arrow');
+        const autoPartsCategoryPillsContainer = document.querySelector('.parts-category-pills');
+
+        // Current selected category for parts
+        let autoPartsCurrentCategory = 'all';
+
+        // Initialize the parts page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAutoPartsCards();
+            setupAutoPartsEventListeners();
+        });
+
+        // Render part cards
+        function renderAutoPartsCards() {
+            const filteredParts = autoPartsCurrentCategory === 'all' 
+                ? autoPartsData 
+                : autoPartsData.filter(part => part.category === autoPartsCurrentCategory);
+
+            autoPartsGrid.innerHTML = '';
+
+            filteredParts.forEach(part => {
+                const partCard = createAutoPartsCard(part);
+                autoPartsGrid.appendChild(partCard);
+            });
+        }
+
+        // Create part card element
+        function createAutoPartsCard(part) {
+            const card = document.createElement('div');
+            card.className = 'part-card';
+
+            const badges = part.badges.map(badge => 
+                `<span class="badge ${badge}">${badge.replace('-', ' ')}</span>`
+            ).join('');
+
+            // Get appropriate icon based on category
+            const categoryIcons = {
+                batteries: 'fas fa-battery-three-quarters',
+                oils: 'fas fa-oil-can',
+                electrics: 'fas fa-bolt',
+                tires: 'fas fa-circle',
+                tools: 'fas fa-tools',
+                body: 'fas fa-car-side',
+                filters: 'fas fa-filter'
+            };
+
+            const icon = categoryIcons[part.category] || 'fas fa-cog';
+
+            card.innerHTML = `
+                <div class="part-image">
+                    <i class="${icon}"></i>
+                </div>
+                <div class="part-content">
+                    <div class="part-brand">${part.brand}</div>
+                    <h3 class="part-title">${part.title}</h3>
+                    <div class="part-price">£${part.price.toFixed(2)}</div>
+                    <div class="part-details">
+                        <div class="part-detail">
+                            <i class="fas fa-hashtag"></i>
+                            <span>${part.partNumber}</span>
+                        </div>
+                        <div class="part-detail">
+                            <i class="fas fa-car"></i>
+                            <span>${part.compatibility}</span>
+                        </div>
+                        <div class="part-detail">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>${part.warranty}</span>
+                        </div>
+                        <div class="part-detail">
+                            <i class="fas fa-check-circle"></i>
+                            <span>${part.stock}</span>
+                        </div>
+                    </div>
+                    <div class="part-badges">
+                        ${badges}
+                    </div>
+                    <div class="part-action">
+                        <button class="btn btn-primary" onclick="openAutoPartsModal(${part.id})">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Open modal with part details
+        function openAutoPartsModal(partId) {
+            const part = autoPartsData.find(p => p.id === partId);
+            if (!part) return;
+
+            document.getElementById('partsModalTitle').textContent = part.title;
+            document.getElementById('partsModalPrice').textContent = `£${part.price.toFixed(2)}`;
+            document.getElementById('partsModalBrand').textContent = `Brand: ${part.brand}`;
+            document.getElementById('partsModalPartNumber').textContent = `Part Number: ${part.partNumber}`;
+            document.getElementById('partsModalCompatibility').textContent = `Compatibility: ${part.compatibility}`;
+            document.getElementById('partsModalWarranty').textContent = `Warranty: ${part.warranty}`;
+            document.getElementById('partsModalCondition').textContent = `Condition: ${part.condition}`;
+            document.getElementById('partsModalMaterial').textContent = `Material: ${part.material}`;
+            document.getElementById('partsModalWeight').textContent = `Weight: ${part.weight}`;
+            document.getElementById('partsModalStock').textContent = `Stock: ${part.stock}`;
+            document.getElementById('partsModalDescription').textContent = part.description;
+
+            // Update modal icon based on category
+            const categoryIcons = {
+                batteries: 'fas fa-battery-three-quarters',
+                oils: 'fas fa-oil-can',
+                electrics: 'fas fa-bolt',
+                tires: 'fas fa-circle',
+                tools: 'fas fa-tools',
+                body: 'fas fa-car-side',
+                filters: 'fas fa-filter'
+            };
+
+            const icon = categoryIcons[part.category] || 'fas fa-cog';
+            document.getElementById('partsModalImage').innerHTML = `<i class="${icon}"></i>`;
+
+            // Set up WhatsApp button
+            autoPartsWhatsappBtn.onclick = () => {
+                const message = `Hi! I'm interested in the ${part.title} (${part.partNumber}) listed for £${part.price.toFixed(2)}. Can you provide more information about availability and shipping?`;
+                const whatsappUrl = `https://wa.me/${autoPartsWhatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            };
+
+            autoPartsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close parts modal
+        function closeAutoPartsModal() {
+            autoPartsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add to cart function for parts (placeholder)
+        function addAutoPartsToCart(partId) {
+            const part = autoPartsData.find(p => p.id === partId);
+            if (part) {
+                alert(`${part.title} has been added to your cart!`);
+                // Here you would implement actual cart functionality
+            }
+        }
+
+        // Setup event listeners for parts section
+        function setupAutoPartsEventListeners() {
+            // Modal close events
+            autoPartsCloseModal.onclick = closeAutoPartsModal;
+            window.onclick = (event) => {
+                if (event.target === autoPartsModal) {
+                    closeAutoPartsModal();
+                }
+            };
+
+            // Category filter events
+            autoPartsCategoryPills.forEach(pill => {
+                pill.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pills
+                    autoPartsCategoryPills.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked pill
+                    this.classList.add('active');
+                    
+                    // Update current category
+                    autoPartsCurrentCategory = this.dataset.category;
+                    
+                    // Re-render part cards
+                    renderAutoPartsCards();
+                });
+            });
+
+            // Category navigation arrows
+            if (autoPartsPrevArrow && autoPartsNextArrow && autoPartsCategoryPillsContainer) {
+                autoPartsPrevArrow.addEventListener('click', function() {
+                    autoPartsCategoryPillsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+                
+                autoPartsNextArrow.addEventListener('click', function() {
+                    autoPartsCategoryPillsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && autoPartsModal.style.display === 'block') {
+                    closeAutoPartsModal();
+                }
+            });
+        }
+
+        // Make functions globally available
+        window.openAutoPartsModal = openAutoPartsModal;
+        window.addAutoPartsToCart = addAutoPartsToCart;
+
+        // Universal Counter Animation for both Reviews and Parts
+        function animateCounters(selector) {
+            const counters = document.querySelectorAll(selector);
+            
+            counters.forEach(counter => {
+                const target = counter.getAttribute('data-target');
+                
+                // Skip if no target or target is not a number
+                if (!target || target === '24/7') {
+                    return;
+                }
+                
+                let targetValue;
+                let isPercentage = false;
+                let isDecimal = false;
+                let hasPlus = false;
+                
+                // Parse target value correctly
+                if (target.includes('%')) {
+                    targetValue = parseFloat(target.replace('%', ''));
+                    isPercentage = true;
+                } else if (target.includes('+')) {
+                    targetValue = parseInt(target.replace('+', ''));
+                    hasPlus = true;
+                } else if (target.includes('.')) {
+                    targetValue = parseFloat(target);
+                    isDecimal = true;
+                } else {
+                    targetValue = parseInt(target);
+                }
+                
+                const increment = targetValue / 100; // Animate over 100 steps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    
+                    if (isDecimal) {
+                        // For decimal numbers like 4.9
+                        counter.textContent = current.toFixed(1);
+                    } else if (isPercentage) {
+                        // For percentages like 98%
+                        counter.textContent = Math.floor(current) + '%';
+                    } else if (hasPlus) {
+                        // For numbers with + like 5000+
+                        counter.textContent = Math.floor(current).toLocaleString() + '+';
+                    } else {
+                        // For whole numbers like 2,847
+                        counter.textContent = Math.floor(current).toLocaleString();
+                    }
+                    
+                    if (current >= targetValue) {
+                        // Set final value
+                        if (isDecimal) {
+                            counter.textContent = targetValue.toFixed(1);
+                        } else if (isPercentage) {
+                            counter.textContent = targetValue + '%';
+                        } else if (hasPlus) {
+                            counter.textContent = targetValue.toLocaleString() + '+';
+                        } else {
+                            counter.textContent = targetValue.toLocaleString();
+                        }
+                        clearInterval(timer);
+                    }
+                }, 20); // Animation duration: 20ms * 100 steps = 2 seconds
+            });
+        }
+
+        // Intersection Observer for Reviews Statistics
+        function setupReviewsObserver() {
+            const reviewsStats = document.querySelector('.reviews-stats');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters('.review-stat-number');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the element is visible
+            });
+            
+            if (reviewsStats) {
+                observer.observe(reviewsStats);
+            }
+        }
+
+        // Intersection Observer for Parts Hero Statistics
+        function setupPartsHeroObserver() {
+            const partsHeroStats = document.querySelector('.parts-hero-stats');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters('.parts-stat-number');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the element is visible
+            });
+            
+            if (partsHeroStats) {
+                observer.observe(partsHeroStats);
+            }
+        }
+
+        // Initialize counters on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setupReviewsObserver();
+            setupPartsHeroObserver();
+            setupPartsInquiryPopup();
+        });
+
+        // Universal Inquiry Popup Functionality
+        function setupPartsInquiryPopup() {
+            const popup = document.getElementById('partsInquiryPopup');
+            const popupClose = document.getElementById('popupClose');
+            const whatsappBtn = document.getElementById('popupWhatsappBtn');
+            const emailBtn = document.getElementById('popupEmailBtn');
+            const inquiryMessage = document.getElementById('inquiryMessage');
+            const popupTitleContent = document.getElementById('popupTitleContent');
+            const popupMessageContent = document.getElementById('popupMessageContent');
+            
+            // Sections to observe
+            const partsHeroSection = document.querySelector('.parts-hero-section');
+            const carsSection = document.querySelector('.listings-section');
+            const featuresSection = document.querySelector('.features-section');
+            
+            // Debug: Check if elements are found
+            console.log('Popup elements:', { popup, popupClose, whatsappBtn, emailBtn, inquiryMessage });
+            
+            if (!popup || !whatsappBtn || !emailBtn || !inquiryMessage) {
+                console.error('Required popup elements not found');
+                return;
+            }
+            
+            let hasShownPopup = false;
+            let currentContext = 'general'; // 'parts', 'cars', or 'general'
+            
+            // WhatsApp number - Replace with your actual WhatsApp number
+            const whatsappNumber = "+1234567890";
+            
+            // Email address - Replace with your actual email
+            const emailAddress = "info@automarket.com";
+            
+            // Update popup content based on context
+            function updatePopupContent(context) {
+                currentContext = context;
+                
+                const contexts = {
+                    parts: {
+                        icon: 'fas fa-wrench',
+                        title: 'Looking for specific parts?',
+                        message: 'Can\'t find the auto part you need? Let us know what parts you\'re looking for and we\'ll help you find them!',
+                        placeholder: 'Describe the part you\'re looking for (e.g., brake pads for 2020 Honda Civic, engine oil filter for BMW X5, transmission fluid, etc.)',
+                        whatsappPrefix: 'Hi! I\'m looking for auto parts: ',
+                        emailSubject: 'Auto Parts Inquiry'
+                    },
+                    cars: {
+                        icon: 'fas fa-car',
+                        title: 'Looking for a specific car?',
+                        message: 'Can\'t find the perfect vehicle? Tell us what you\'re looking for and we\'ll help you find your dream car!',
+                        placeholder: 'Describe the car you\'re looking for (e.g., 2020 Honda Civic, electric SUV under $30k, luxury sedan with low mileage, etc.)',
+                        whatsappPrefix: 'Hi! I\'m looking for a car: ',
+                        emailSubject: 'Vehicle Inquiry'
+                    },
+                    general: {
+                        icon: 'fas fa-search',
+                        title: 'Looking for something specific?',
+                        message: 'Can\'t find what you\'re looking for? Let us know what you need and we\'ll help you find it!',
+                        placeholder: 'Describe what you\'re looking for (e.g., 2020 Honda Civic, brake pads for BMW X5, financing options, etc.)',
+                        whatsappPrefix: 'Hi! I\'m looking for: ',
+                        emailSubject: 'General Inquiry'
+                    }
+                };
+                
+                const config = contexts[context];
+                popupTitleContent.innerHTML = `<i class="${config.icon}"></i> ${config.title}`;
+                popupMessageContent.textContent = config.message;
+                inquiryMessage.placeholder = config.placeholder;
+            }
+            
+            // Create observers for different sections
+            function createSectionObserver(section, context) {
+                return new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !hasShownPopup) {
+                            // Update popup content based on section
+                            updatePopupContent(context);
+                            
+                            // Show popup after a small delay
+                            setTimeout(() => {
+                                popup.classList.add('show');
+                                hasShownPopup = true;
+                            }, 1500); // Show after 1.5 seconds
+                            
+                            // Unobserve after showing once
+                            entry.target.observers?.forEach(obs => obs.unobserve(entry.target));
+                        }
+                    });
+                }, {
+                    threshold: 0.3 // Show when 30% of the section is visible
+                });
+            }
+            
+            // Set up observers for different sections
+            const observers = [];
+            
+            if (partsHeroSection) {
+                const partsObserver = createSectionObserver(partsHeroSection, 'parts');
+                partsObserver.observe(partsHeroSection);
+                partsHeroSection.observers = [partsObserver];
+                observers.push(partsObserver);
+            }
+            
+            if (carsSection) {
+                const carsObserver = createSectionObserver(carsSection, 'cars');
+                carsObserver.observe(carsSection);
+                carsSection.observers = [carsObserver];
+                observers.push(carsObserver);
+            }
+            
+            if (featuresSection) {
+                const featuresObserver = createSectionObserver(featuresSection, 'general');
+                featuresObserver.observe(featuresSection);
+                featuresSection.observers = [featuresObserver];
+                observers.push(featuresObserver);
+            }
+            
+            // Close popup functionality
+            function closePopup() {
+                popup.classList.remove('show');
+            }
+            
+            // Close button click
+            popupClose.addEventListener('click', closePopup);
+            
+            // Close when clicking outside popup
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && popup.classList.contains('show')) {
+                    closePopup();
+                }
+            });
+            
+            // WhatsApp button functionality
+            whatsappBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const message = inquiryMessage.value.trim();
+                if (!message) {
+                    alert('Please enter your message first');
+                    inquiryMessage.focus();
+                    return;
+                }
+                
+                // Get context-specific configuration
+                const contexts = {
+                    parts: { whatsappPrefix: 'Hi! I\'m looking for auto parts: ' },
+                    cars: { whatsappPrefix: 'Hi! I\'m looking for a car: ' },
+                    general: { whatsappPrefix: 'Hi! I\'m looking for: ' }
+                };
+                
+                const config = contexts[currentContext];
+                const whatsappMessage = `${config.whatsappPrefix}${message}`;
+                const cleanNumber = whatsappNumber.replace(/\D/g, '');
+                const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                console.log('WhatsApp URL:', whatsappUrl); // Debug log
+                
+                // Try to open WhatsApp
+                try {
+                    const opened = window.open(whatsappUrl, '_blank');
+                    if (!opened) {
+                        // Popup blocked, try alternative
+                        window.location.href = whatsappUrl;
+                    }
+                    closePopup();
+                } catch (error) {
+                    console.error('Error opening WhatsApp:', error);
+                    // Fallback - show URL to user
+                    alert('Please copy this URL and paste it in your browser: ' + whatsappUrl);
+                }
+            });
+            
+            // Email button functionality
+            emailBtn.addEventListener('click', () => {
+                const message = inquiryMessage.value.trim();
+                if (!message) {
+                    alert('Please enter your message first');
+                    inquiryMessage.focus();
+                    return;
+                }
+                
+                // Get context-specific configuration
+                const contexts = {
+                    parts: { 
+                        emailSubject: 'Auto Parts Inquiry',
+                        emailBody: `Hello,\n\nI'm looking for the following auto parts:\n\n${message}\n\nPlease let me know about availability and pricing.\n\nThank you!`
+                    },
+                    cars: { 
+                        emailSubject: 'Vehicle Inquiry',
+                        emailBody: `Hello,\n\nI'm looking for the following vehicle:\n\n${message}\n\nPlease let me know about available options and pricing.\n\nThank you!`
+                    },
+                    general: { 
+                        emailSubject: 'General Inquiry',
+                        emailBody: `Hello,\n\nI'm looking for the following:\n\n${message}\n\nPlease let me know how you can help.\n\nThank you!`
+                    }
+                };
+                
+                const config = contexts[currentContext];
+                const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(config.emailSubject)}&body=${encodeURIComponent(config.emailBody)}`;
+                
+                window.location.href = mailtoUrl;
+                closePopup();
+            });
+            
+            // Auto-resize textarea
+            inquiryMessage.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        }
+    </script>
+
+    <!-- Parts Inquiry Popup -->
+    <div id="partsInquiryPopup" class="parts-inquiry-popup">
+        <div class="popup-header">
+            <div class="popup-title" id="popupTitleContent">
+                <i class="fas fa-wrench"></i>
+                Looking for specific parts?
+            </div>
+            <button class="popup-close" id="popupClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="popup-content">
+            <div class="popup-message" id="popupMessageContent">
+                Can't find the auto part you need? Let us know what parts you're looking for and we'll help you find them!
+            </div>
+            <form class="popup-form">
+                <textarea 
+                    id="inquiryMessage" 
+                    class="popup-textarea" 
+                    placeholder="Describe the part you're looking for (e.g., brake pads for 2020 Honda Civic, engine oil filter for BMW X5, transmission fluid, etc.)"
+                    required
+                ></textarea>
+                <div class="popup-buttons">
+                    <button type="button" class="popup-btn popup-btn-whatsapp" id="popupWhatsappBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </button>
+                    <button type="button" class="popup-btn popup-btn-email" id="popupEmailBtn">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!-- Footer -->
+<footer class="footer">
+   <div class="footer-content">
+       <!-- Newsletter Section -->
+       <section class="footer-newsletter">
+           <div class="newsletter-content">
+               <h2 class="newsletter-title">
+                   <i class="fas fa-envelope"></i>
+                   Stay Updated
+               </h2>
+               <p class="newsletter-subtitle">
+                   Get the latest deals on cars and auto parts delivered straight to your inbox
+               </p>
+               <form class="newsletter-form" id="newsletterForm">
+                   <input 
+                       type="email" 
+                       class="newsletter-input" 
+                       placeholder="Enter your email address"
+                       required
+                   >
+                   <button type="submit" class="newsletter-btn">
+                       <i class="fas fa-paper-plane"></i>
+                       Subscribe
+                   </button>
+               </form>
+           </div>
+       </section>
+
+       <!-- Main Footer -->
+       <section class="footer-main">
+           <div class="footer-container">
+               <div class="footer-grid">
+                   <!-- Brand Section -->
+                   <div class="footer-section footer-brand">
+                       <div class="footer-logo">
+                           <i class="fas fa-car"></i>
+                           <span>AutoMarket</span>
+                       </div>
+                       <p class="footer-description">
+                           Your trusted destination for quality vehicles and automotive parts. 
+                           We've been serving customers with excellence and reliability for over a decade.
+                       </p>
+                       <div class="footer-social">
+                           <a href="#" class="social-link" aria-label="Facebook">
+                               <i class="fab fa-facebook-f"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="Twitter">
+                               <i class="fab fa-twitter"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="Instagram">
+                               <i class="fab fa-instagram"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="YouTube">
+                               <i class="fab fa-youtube"></i>
+                           </a>
+                           <a href="#" class="social-link" aria-label="LinkedIn">
+                               <i class="fab fa-linkedin-in"></i>
+                           </a>
+                       </div>
+                   </div>
+
+                   <!-- Quick Links -->
+                   <div class="footer-section">
+                       <h3>Quick Links</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-car"></i> Browse Cars</a></li>
+                           <li><a href="#"><i class="fas fa-cogs"></i> Auto Parts</a></li>
+                           <li><a href="#"><i class="fas fa-tools"></i> Services</a></li>
+                           <li><a href="#"><i class="fas fa-calculator"></i> Financing</a></li>
+                           <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Categories -->
+                   <div class="footer-section">
+                       <h3>Categories</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-bolt"></i> Electric Cars</a></li>
+                           <li><a href="#"><i class="fas fa-crown"></i> Luxury Vehicles</a></li>
+                           <li><a href="#"><i class="fas fa-truck-monster"></i> SUVs</a></li>
+                           <li><a href="#"><i class="fas fa-truck-pickup"></i> Trucks</a></li>
+                           <li><a href="#"><i class="fas fa-leaf"></i> Hybrids</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Support -->
+                   <div class="footer-section">
+                       <h3>Support</h3>
+                       <ul class="footer-links">
+                           <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                           <li><a href="#"><i class="fas fa-headset"></i> Customer Support</a></li>
+                           <li><a href="#"><i class="fas fa-shield-alt"></i> Warranty</a></li>
+                           <li><a href="#"><i class="fas fa-exchange-alt"></i> Returns</a></li>
+                           <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
+                       </ul>
+                   </div>
+
+                   <!-- Contact Info -->
+                   <div class="footer-section">
+                       <h3>Contact Info</h3>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-map-marker-alt"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Address</h4>
+                               <p>123 Auto Street<br>San Jose, CA 95134</p>
+                           </div>
+                       </div>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-phone"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Phone</h4>
+                               <p>+1 (555) 123-4567</p>
+                           </div>
+                       </div>
+                       <div class="contact-item">
+                           <div class="contact-icon">
+                               <i class="fas fa-envelope"></i>
+                           </div>
+                           <div class="contact-info">
+                               <h4>Email</h4>
+                               <p>info@automarket.com</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <!-- Footer Bottom -->
+               <div class="footer-bottom">
+                   <div class="footer-bottom-content">
+                       <div class="footer-copyright">
+                           <i class="fas fa-copyright"></i>
+                           <span>2025 AutoMarket. All rights reserved.</span>
+                       </div>
+                       <ul class="footer-bottom-links">
+                           <li><a href="#">Privacy Policy</a></li>
+                           <li><a href="#">Terms of Service</a></li>
+                           <li><a href="#">Cookie Policy</a></li>
+                           <li><a href="#">Sitemap</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </section>
+   </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+   <i class="fas fa-arrow-up"></i>
+</button>
+
+<style>
+/* Footer Styles */
+.footer {
+   background: #6B46C1;
+   color: #FFFFFF;
+   position: relative;
+   overflow: hidden;
+}
+
+/* Removed grid pattern overlay */
+
+.footer-content {
+   position: relative;
+   z-index: 1;
+}
+
+/* Newsletter Section */
+.footer-newsletter {
+   background: #6B46C1;
+   padding: 64px 0;
+   text-align: center;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-content {
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.newsletter-title {
+   font-size: 32px;
+   font-weight: 700;
+   margin-bottom: 16px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 16px;
+}
+
+.newsletter-title i {
+   font-size: 36px;
+   opacity: 0.9;
+}
+
+.newsletter-subtitle {
+   font-size: 18px;
+   opacity: 0.9;
+   margin-bottom: 32px;
+}
+
+.newsletter-form {
+   display: flex;
+   gap: 16px;
+   max-width: 500px;
+   margin: 0 auto;
+}
+
+.newsletter-input {
+   flex: 1;
+   padding: 16px 24px;
+   border: none;
+   border-radius: 50px;
+   font-size: 16px;
+   background: rgba(255, 255, 255, 0.95);
+   color: #18181B;
+   transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+   outline: none;
+   background: #FFFFFF;
+   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.newsletter-input::placeholder {
+   color: #71717A;
+}
+
+.newsletter-btn {
+   padding: 16px 32px;
+   background: #FFFFFF;
+   color: #6B46C1;
+   border: none;
+   border-radius: 50px;
+   font-weight: 600;
+   font-size: 16px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+   background: #F4F4F5;
+}
+
+/* Main Footer */
+.footer-main {
+   padding: 64px 0;
+}
+
+.footer-container {
+   max-width: 1440px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.footer-grid {
+   display: grid;
+   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+   gap: 64px;
+   margin-bottom: 64px;
+}
+
+.footer-logo {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+   margin-bottom: 24px;
+   font-size: 24px;
+   font-weight: 700;
+}
+
+.footer-logo i {
+   font-size: 32px;
+   color: #FFFFFF;
+}
+
+.footer-description {
+   color: rgba(255, 255, 255, 0.8);
+   margin-bottom: 32px;
+   line-height: 1.6;
+}
+
+.footer-social {
+   display: flex;
+   gap: 16px;
+}
+
+.social-link {
+   width: 48px;
+   height: 48px;
+   background: rgba(255, 255, 255, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #FFFFFF;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   position: relative;
+   overflow: hidden;
+}
+
+.social-link::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 100%;
+   background: rgba(255, 255, 255, 0.2);
+   transition: left 0.3s ease;
+   z-index: 0;
+}
+
+.social-link i {
+   position: relative;
+   z-index: 1;
+   font-size: 18px;
+}
+
+.social-link:hover::before {
+   left: 0;
+}
+
+.social-link:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section h3 {
+   font-size: 18px;
+   font-weight: 600;
+   margin-bottom: 24px;
+   color: #FFFFFF;
+   position: relative;
+}
+
+.footer-section h3::after {
+   content: '';
+   position: absolute;
+   bottom: -8px;
+   left: 0;
+   width: 30px;
+   height: 2px;
+   background: #FFFFFF;
+   border-radius: 1px;
+}
+
+.footer-links {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.footer-links a {
+   color: rgba(255, 255, 255, 0.8);
+   text-decoration: none;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   padding: 4px 0;
+}
+
+.footer-links a:hover {
+   color: #FFFFFF;
+   padding-left: 8px;
+}
+
+.footer-links a i {
+   font-size: 14px;
+   width: 16px;
+}
+
+/* Contact Info */
+.contact-item {
+   display: flex;
+   align-items: flex-start;
+   gap: 16px;
+   margin-bottom: 24px;
+   color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-icon {
+   width: 40px;
+   height: 40px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #FFFFFF;
+   flex-shrink: 0;
+}
+
+.contact-info h4 {
+   color: #FFFFFF;
+   font-weight: 600;
+   margin-bottom: 4px;
+}
+
+.contact-info {
+   text-align: left;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   padding: 32px 0;
+}
+
+.footer-bottom-content {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 24px;
+}
+
+.footer-copyright {
+   color: rgba(255, 255, 255, 0.8);
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.footer-copyright i {
+   color: #FFFFFF;
+}
+
+.footer-bottom-links {
+   display: flex;
+   gap: 32px;
+   list-style: none;
+}
+
+.footer-bottom-links a {
+   color: rgba(255, 255, 255, 0.8);
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+   color: #FFFFFF;
+}
+
+/* Back to Top Button */
+.back-to-top {
+   position: fixed;
+   bottom: 30px;
+   right: 30px;
+   width: 56px;
+   height: 56px;
+   background: #6B46C1;
+   border: none;
+   border-radius: 50px;
+   color: #FFFFFF;
+   cursor: pointer;
+   font-size: 20px;
+   transition: all 0.3s ease;
+   opacity: 0;
+   visibility: hidden;
+   z-index: 1000;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top.visible {
+   opacity: 1;
+   visibility: visible;
+}
+
+.back-to-top:hover {
+   transform: translateY(-3px);
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+   .footer-grid {
+       grid-template-columns: 1fr 1fr 1fr;
+   }
+
+   .footer-brand {
+       grid-column: span 3;
+   }
+}
+
+@media (max-width: 768px) {
+   .footer-main {
+       padding: 48px 0;
+   }
+
+   .footer-newsletter {
+       padding: 48px 0;
+   }
+
+   .footer-container {
+       padding: 0 24px;
+   }
+
+   .footer-grid {
+       grid-template-columns: 1fr 1fr;
+       gap: 32px;
+   }
+
+   .footer-brand {
+       grid-column: span 2;
+       text-align: center;
+       margin-bottom: 24px;
+   }
+
+   .footer-social {
+       justify-content: center;
+   }
+
+   .newsletter-content {
+       padding: 0 32px;
+   }
+
+   .newsletter-form {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .newsletter-input {
+       width: 100%;
+   }
+
+   .newsletter-btn {
+       width: 100%;
+   }
+
+   .newsletter-title {
+       font-size: 24px;
+   }
+
+   .newsletter-subtitle {
+       font-size: 16px;
+   }
+
+   .footer-bottom-content {
+       flex-direction: column;
+       text-align: center;
+       gap: 16px;
+   }
+
+   .footer-bottom-links {
+       flex-wrap: wrap;
+       justify-content: center;
+       gap: 16px;
+   }
+
+   .back-to-top {
+       width: 48px;
+       height: 48px;
+       bottom: 20px;
+       right: 20px;
+   }
+
+   .contact-item {
+       margin-bottom: 20px;
+   }
+}
+
+@media (max-width: 600px) {
+   .footer-grid {
+       grid-template-columns: 1fr 1fr;
+       gap: 24px;
+   }
+
+   .footer-section h3 {
+       font-size: 16px;
+       margin-bottom: 16px;
+   }
+
+   .footer-links {
+       gap: 12px;
+   }
+
+   .contact-item {
+       flex-direction: column;
+       text-align: center;
+       gap: 8px;
+   }
+
+   .contact-icon {
+       align-self: center;
+   }
+
+   .newsletter-content {
+       padding: 0 20px;
+   }
+}
+
+@media (max-width: 480px) {
+   .footer-main {
+       padding: 32px 0;
+   }
+
+   .footer-newsletter {
+       padding: 32px 0;
+   }
+
+   .footer-container {
+       padding: 0 16px;
+   }
+
+   .footer-grid {
+       grid-template-columns: 1fr;
+       gap: 32px;
+   }
+
+   .footer-brand {
+       grid-column: span 1;
+       text-align: center;
+   }
+
+   .footer-section {
+       text-align: center;
+   }
+
+   .footer-links {
+       align-items: center;
+   }
+
+   .footer-social {
+       justify-content: center;
+   }
+
+   .newsletter-content {
+       padding: 0 16px;
+   }
+
+   .newsletter-title {
+       font-size: 20px;
+       flex-direction: column;
+       gap: 8px;
+   }
+
+   .newsletter-title i {
+       font-size: 24px;
+   }
+
+   .newsletter-subtitle {
+       font-size: 14px;
+       margin-bottom: 24px;
+   }
+
+   .newsletter-form {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .newsletter-input {
+       width: 100%;
+   }
+
+   .newsletter-btn {
+       width: 100%;
+   }
+
+   .footer-bottom {
+       padding: 24px 0;
+   }
+
+   .footer-bottom-content {
+       flex-direction: column;
+       text-align: center;
+       gap: 16px;
+   }
+
+   .footer-bottom-links {
+       flex-direction: column;
+       gap: 12px;
+   }
+
+   .footer-bottom-links a {
+       padding: 8px 0;
+   }
+
+   .back-to-top {
+       width: 44px;
+       height: 44px;
+       bottom: 16px;
+       right: 16px;
+   }
+
+   .back-to-top i {
+       font-size: 16px;
+   }
+
+   .contact-item {
+       flex-direction: column;
+       text-align: center;
+       gap: 8px;
+       margin-bottom: 16px;
+   }
+
+   .contact-icon {
+       align-self: center;
+   }
+
+   .social-link {
+       width: 40px;
+       height: 40px;
+   }
+
+   .social-link i {
+       font-size: 16px;
+   }
+}
+
+@media (max-width: 360px) {
+   .footer-container {
+       padding: 0 12px;
+   }
+
+   .newsletter-content {
+       padding: 0 12px;
+   }
+
+   .footer-logo {
+       font-size: 20px;
+   }
+
+   .footer-logo i {
+       font-size: 24px;
+   }
+
+   .newsletter-title {
+       font-size: 18px;
+   }
+
+   .newsletter-input,
+   .newsletter-btn {
+       padding: 12px 16px;
+   }
+
+   .footer-section h3 {
+       font-size: 16px;
+   }
+
+   .footer-links {
+       gap: 8px;
+   }
+}
+
+/* Parts Inquiry Popup */
+.parts-inquiry-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--gray-200);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.parts-inquiry-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.popup-header {
+    background: var(--primary-gradient);
+    color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.popup-title {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 18px;
+    cursor: pointer;
+    padding: var(--space-xs);
+    border-radius: var(--border-radius-sm);
+    transition: background 0.2s ease;
+}
+
+.popup-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.popup-content {
+    padding: var(--space-lg);
+}
+
+.popup-message {
+    color: var(--gray-700);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.popup-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: var(--space-md);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.popup-textarea:focus {
+    outline: none;
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+}
+
+.popup-textarea::placeholder {
+    color: var(--gray-500);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.popup-btn {
+    flex: 1;
+    padding: var(--space-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.popup-btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+}
+
+.popup-btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-1px);
+}
+
+.popup-btn-email {
+    background: var(--primary-main);
+    color: var(--white);
+}
+
+.popup-btn-email:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.popup-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsive popup */
+@media (max-width: 768px) {
+    .parts-inquiry-popup {
+        width: 300px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .parts-inquiry-popup {
+        width: 280px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    .popup-content {
+        padding: var(--space-md);
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+    }
+    
+    .popup-btn {
+        width: 100%;
+    }
+}
+</style>
+
+<script> 
+// Newsletter form submission
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+   e.preventDefault();
+   
+   const email = this.querySelector('.newsletter-input').value;
+   const button = this.querySelector('.newsletter-btn');
+   const originalContent = button.innerHTML;
+   
+   // Show loading state
+   button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+   button.disabled = true;
+   
+   // Simulate API call
+   setTimeout(() => {
+       // Show success message
+       button.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+       button.style.background = '#10B981';
+       
+       // Reset form
+       this.reset();
+       
+       // Reset button after 2 seconds
+       setTimeout(() => {
+           button.innerHTML = originalContent;
+           button.style.background = '';
+           button.disabled = false;
+       }, 2000);
+   }, 1500);
+});
+
+// Back to top functionality
+const backToTopButton = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function() {
+   if (window.pageYOffset > 300) {
+       backToTopButton.classList.add('visible');
+   } else {
+       backToTopButton.classList.remove('visible');
+   }
+});
+
+backToTopButton.addEventListener('click', function() {
+   window.scrollTo({
+       top: 0,
+       behavior: 'smooth'
+   });
+});
+</script>
+
+
+
+
+
+    
